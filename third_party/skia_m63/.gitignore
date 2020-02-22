@@ -14,7 +14,7 @@
 .settings/
 TAGS
 bower_components
-common
+/common
 imgui.ini
 infra/bots/gen_tasks_aux.go
 infra/bots/tools/luci-go/linux64/cipd
