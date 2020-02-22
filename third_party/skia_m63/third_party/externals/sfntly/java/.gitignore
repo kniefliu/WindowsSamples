@@ -1,0 +1,6 @@
+# override gitignore
+
+#Except for .project here.
+!.project
+#Except for .settings/ here.
+!.settings
