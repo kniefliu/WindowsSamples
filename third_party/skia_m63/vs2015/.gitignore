@@ -1,0 +1,12 @@
+ninja-Static/
+*.tlog
+*.user
+*.log
+*.pdb
+*.suo
+*.res
+*.ilk
+*.exp
+*.pdf
+*.opendb
+*.db

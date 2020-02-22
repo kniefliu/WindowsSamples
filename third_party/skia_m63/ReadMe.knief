@@ -1,4 +1,9 @@
 20200222
+    config current repo:
+        git config user.name "userName"
+        git config user.email "userEmail"
+
+20200222
     ANGLE need Windows 10 SDK (Version 10.0.18362.0 or later)
         Windows 10 SDK need to be installed default location.
         For example: C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0.
