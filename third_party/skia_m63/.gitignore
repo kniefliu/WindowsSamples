@@ -30,7 +30,7 @@ platform_tools/android/apps/*/build
 platform_tools/android/apps/*/src/main/libs
 sampleapp_prefs.txt
 /skps
-third_party/externals
+# third_party/externals
 tools/skp/page_sets/data/*.json
 tools/skp/page_sets/data/*.wpr
 xcodebuild
@@ -40,7 +40,7 @@ buildtools
 tools/clang
 third_party/llvm-build
 bin/gn
-bin/gn.exe
+# bin/gn.exe
 bin/clang-format
 bin/clang-format.exe
 bin/clang_win
