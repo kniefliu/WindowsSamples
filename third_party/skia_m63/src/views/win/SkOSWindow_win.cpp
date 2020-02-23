@@ -45,6 +45,55 @@ void post_skwinevent(HWND hwnd)
     PostMessage(hwnd, WM_EVENT_CALLBACK, 0, 0);
 }
 
+#if VIEWS_NOT_IN_STATIC_LIB
+template <typename T>
+T unaligned_load(const uint8_t* src) 
+{
+    T val;
+    memcpy(&val, src, sizeof(val));
+    return val;
+}
+namespace SkOpts {
+    uint32_t hash_fn_impl(const void* vdata, size_t bytes, uint32_t hash)
+    {
+        auto data = (const uint8_t*)vdata;
+
+        size_t original_bytes = bytes;
+
+        // Handle 4 bytes at a time while possible.
+        while (bytes >= 4) {
+            uint32_t k = unaligned_load<uint32_t>(data);
+            k *= 0xcc9e2d51;
+            k = (k << 15) | (k >> 17);
+            k *= 0x1b873593;
+
+            hash ^= k;
+            hash = (hash << 13) | (hash >> 19);
+            hash *= 5;
+            hash += 0xe6546b64;
+
+            bytes -= 4;
+            data += 4;
+        }
+
+        // Handle last 0-3 bytes.
+        uint32_t k = 0;
+        switch (bytes & 3) {
+        case 3: k ^= data[2] << 16;
+        case 2: k ^= data[1] << 8;
+        case 1: k ^= data[0] << 0;
+            k *= 0xcc9e2d51;
+            k = (k << 15) | (k >> 17);
+            k *= 0x1b873593;
+            hash ^= k;
+        }
+
+        hash ^= original_bytes;
+        return SkChecksum::Mix(hash);
+    }
+    uint32_t(*hash_fn)(const void*, size_t, uint32_t seed) = hash_fn_impl;
+}
+#endif
 SkTHashMap<void*, SkOSWindow*> SkOSWindow::gHwndToOSWindowMap;
 
 SkOSWindow::SkOSWindow(const void* winInit) {

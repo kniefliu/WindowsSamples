@@ -725,6 +725,10 @@ component("skia") {
     ":webp",
     ":xml",
   ]
+  
+  if (is_win && skia_use_angle) {
+    deps += [ "//third_party/angle2" ]
+  }
 
   # This file (and all GN files in Skia) are designed to work with an
   # empty sources assignment filter; we handle all that explicitly.
@@ -772,6 +776,7 @@ component("skia") {
     sources += [
       "src/fonts/SkFontMgr_indirect.cpp",
       "src/ports/SkDebug_win.cpp",
+      # SkFontHost_win.cpp need Gdi32 and Usp10 libs.
       "src/ports/SkFontHost_win.cpp",
       "src/ports/SkFontMgr_win_dw.cpp",
       "src/ports/SkImageEncoder_WIC.cpp",
@@ -784,16 +789,14 @@ component("skia") {
     ]
     if (skia_use_gdi) {
       sources += [ "src/ports/SkFontMgr_win_gdi_factory.cpp" ]
-      libs += [
-        "Gdi32.lib",
-        "Usp10.lib",
-      ]
     } else {
       sources += [ "src/ports/SkFontMgr_win_dw_factory.cpp" ]
     }
     sources -=
         [ get_path_info("src/utils/SkThreadUtils_pthread.cpp", "abspath") ]
     libs += [
+      "Gdi32.lib",
+      "Usp10.lib",
       "FontSub.lib",
       "Ole32.lib",
       "OleAut32.lib",
@@ -861,6 +864,80 @@ component("skia") {
 
   if (is_fuchsia) {
     sources += [ "src/ports/SkDebug_stdio.cpp" ]
+  }
+}
+
+if (is_component_build && !skia_enable_tools && is_win) {
+  executable("HelloWorld") {
+    defines = [ "VIEWS_NOT_IN_STATIC_LIB=1" ]
+    configs += [ ":skia_private" ]
+    include_dirs = [ "include/views" ]
+    sources = [
+      "src/views/SkEvent.cpp",
+      "src/views/SkEventSink.cpp",
+      "src/views/SkOSMenu.cpp",
+      "src/views/SkTagList.cpp",
+      "src/views/SkTouchGesture.cpp",
+      "src/views/SkView.cpp",
+      "src/views/SkViewPriv.cpp",
+    ]
+    if (!is_android) {
+      sources += [ "src/views/SkWindow.cpp" ]
+    }
+    libs = [ ]
+    if (is_linux) {
+      public_include_dirs += [ "src/views/unix" ]
+      sources += [
+        "src/views/unix/SkOSWindow_Unix.cpp",
+        "src/views/unix/keysym2ucs.c",
+      ]
+      libs += [
+        "GL",
+        "X11",
+      ]
+    } else if (is_mac) {
+      sources += [
+        "src/views/mac/SkEventNotifier.mm",
+        "src/views/mac/SkNSView.mm",
+        "src/views/mac/SkOSWindow_Mac.mm",
+        "src/views/mac/SkTextFieldCell.m",
+      ]
+      libs += [
+        "QuartzCore.framework",
+        "Cocoa.framework",
+        "Foundation.framework",
+      ]
+    } else if (is_win) {
+      sources += [ "src/views/win/SkOSWindow_win.cpp" ]
+    } else if (is_ios) {
+      sources += [ "src/views/mac/SkEventNotifier.mm" ]
+    }
+    
+    sources += [ "example/HelloWorld.cpp" ]
+    
+    if (is_mac) {
+      sources += [ "src/views/mac/skia_mac.mm" ]
+    } else if (is_win) {
+      sources += [ "src/views/win/skia_win.cpp" ]
+    } else if (is_linux) {
+      sources += [ "src/views/unix/skia_unix.cpp" ]
+    }
+    deps = [
+      #":gpu_tool_utils",
+      ":skia",
+    ]
+    if (skia_use_angle) {
+      deps += [ "//third_party/angle2" ]
+    }
+    libs += [
+      "Gdi32.lib",
+      "Usp10.lib",
+      "FontSub.lib",
+      "Ole32.lib",
+      "OleAut32.lib",
+      "User32.lib",
+      "OpenGL32.lib",
+    ]
   }
 }
 
