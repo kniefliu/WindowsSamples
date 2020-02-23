@@ -1,0 +1,6 @@
+20200223
+    1. config current repo:
+        git config user.name "userName"
+        git config user.email "userEmail"        
+    2. // Force git to always ask for a password
+        git config --local credential.helper ''
