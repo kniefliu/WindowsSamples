@@ -2,15 +2,15 @@
 #Author: Qi Gao(monkgau@gmail.com)
 #Created: 2012/9/17
 
-set(source_files Main.cpp)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+file(GLOB SRC_Root "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/*.rc")
+
+add_definitions(-DDUI_RES_PATH="${CMAKE_CURRENT_SOURCE_DIR}/../bin/")
+add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+add_definitions(-D_CRT_NON_CONFORMING_SWPRINTFS)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-add_executable(ListDemo ${source_files})
+add_executable(ListDemo ${SRC_Root})
 add_dependencies(ListDemo duilib)
 target_link_libraries(ListDemo duilib)
 set_target_properties(ListDemo PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 
-add_custom_command(TARGET ListDemo POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different
-  ${PROJECT_BINARY_DIR}/bin/ListDemo.exe ${PROJECT_SOURCE_DIR}/bin/ListDemo.exe)

@@ -146,7 +146,15 @@ public:
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
 {
     CPaintManagerUI::SetInstance(hInstance);
-    CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("skin\\FlashRes"));
+	DuiLib::CDuiString strDuiResPath = CPaintManagerUI::GetInstancePath();
+#ifdef DUI_RES_PATH
+	char szAnisDuiResPath[MAX_PATH] = {0};
+	strcpy_s(szAnisDuiResPath, DUI_RES_PATH);
+	TCHAR szDuiResPath[MAX_PATH] = {0};
+	MultiByteToWideChar(CP_ACP, 0, szAnisDuiResPath, strlen(szAnisDuiResPath), szDuiResPath, MAX_PATH-1);
+	strDuiResPath = szDuiResPath;
+#endif
+	CPaintManagerUI::SetResourcePath(strDuiResPath + _T("skin\\FlashRes"));
 
     HRESULT Hr = ::CoInitialize(NULL);
     if( FAILED(Hr) ) return 0;

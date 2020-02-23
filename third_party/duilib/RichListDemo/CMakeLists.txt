@@ -2,16 +2,14 @@
 #Author: Qi Gao(monkgau@gmail.com)
 #Created: 2012/9/17
 
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SRC_LIST)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})                           
+file(GLOB SRC_Root "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/*.rc")
 
+add_definitions(-DDUI_RES_PATH="${CMAKE_CURRENT_SOURCE_DIR}/../bin/") 
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
-add_executable(RichListDemo ${SRC_LIST} RichListDemo.rc)
+add_executable(RichListDemo ${SRC_Root})
 set_target_properties(RichListDemo PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 target_link_libraries(RichListDemo duilib)
-
-add_custom_command(TARGET RichListDemo POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different
-  ${PROJECT_BINARY_DIR}/bin/RichListDemo.exe ${PROJECT_SOURCE_DIR}/bin/RichListDemo.exe)
+set_target_properties(RichListDemo PROPERTIES COMPILE_FLAGS "/YuStdAfx.h")
+set_source_files_properties(StdAfx.cpp PROPERTIES COMPILE_FLAGS "/YcStdAfx.h")
