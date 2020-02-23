@@ -20,6 +20,6 @@
 	- Set env path, run [SetToolPath.bat](SetToolPath.bat)
 	- Generate vs2015 project: `bin\gn.exe gen out\ninja-Shared --ide="vs2015" --sln="skia" --args="is_component_build=true is_official_build=false skia_use_angle=true angle_use_commit=false skia_use_egl=false skia_enable_spirv_validation=false target_cpu=\"x64\""`
 	- Start vs2015, two methods: 
-		- The first method: `start out\ninja-Static\skia.sln`
+		- The first method: `start out\ninja-Shared\skia.sln`
 		- The second method: `"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe" out\ninja-Shared\skia.sln`
 	- Compile and run SampleApp project
