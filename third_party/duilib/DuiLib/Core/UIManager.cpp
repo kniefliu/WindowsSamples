@@ -3538,7 +3538,7 @@ bool CPaintManagerUI::TranslateMessage(const LPMSG pMsg)
 	{
 		for( int i = 0; i < m_aPreMessages.GetSize(); i++ ) 
 		{
-			int size = m_aPreMessages.GetSize();
+			//int size = m_aPreMessages.GetSize();
 			CPaintManagerUI* pT = static_cast<CPaintManagerUI*>(m_aPreMessages[i]);
 			if(pMsg->hwnd == pT->GetPaintWindow())
 			{
