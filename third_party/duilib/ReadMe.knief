@@ -1,0 +1,12 @@
+20200223
+    duilib : add DUI_RES_PATH Macro; demo project add precompile.
+    1. MenuDemo and TestApp1 : 1.add cmake DUI_RES_PATH.
+    2. SrcCapture : add CMake Macro DUI_RES_PATH.
+    3. MultiTab Demo.
+    4. DuilibTest.
+    5. MFCDemo : add CMake Macro DUI_RES_PATH; to do - fix UIManager static var memory leaks.
+    6. QSBFace.
+
+20200223
+    1. Code from https://github.com/duilib/duilib.git (master, commit: 2497c77746e201ddb499229010a0b15c0148b723)
+    
