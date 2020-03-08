@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..\..\third_party\externals\libpng">
+      <UniqueIdentifier>{61E9C1E2-EB67-2B0F-F71F-FC8A3E87F1DF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party\externals">
+      <UniqueIdentifier>{AA2D7338-93F3-927B-CA6F-5DA0C10A5E77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party">
+      <UniqueIdentifier>{F88318E6-F850-6A80-FDF6-B1A366449460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..">
+      <UniqueIdentifier>{A8A4AA46-5437-4AB8-6540-F14ED994B38E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{78245A82-158D-7D20-54A6-7C428D0A7B36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party\externals\libpng\intel">
+      <UniqueIdentifier>{B26E37B4-F230-2549-52AD-8388BDD51F75}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../../../third_party/externals/libpng/png.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngerror.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngget.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngmem.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngpread.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngread.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngrio.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngrtran.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngrutil.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngset.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngtrans.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngwio.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngwrite.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngwtran.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/pngwutil.c">
+      <Filter>..\..\third_party\externals\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/intel/filter_sse2_intrinsics.c">
+      <Filter>..\..\third_party\externals\libpng\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/libpng/intel/intel_init.c">
+      <Filter>..\..\third_party\externals\libpng\intel</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

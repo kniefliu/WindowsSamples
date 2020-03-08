@@ -1,0 +1,110 @@
+# skia vs2015
+
+- SampleApp
+	- Compile & Run
+		- **ninja to vs2015**: src(ninja full path); dest(vs2015 full path); `python msvc_project_tool.py -src="./ninja-Static" -dest="./Static"`
+		- **libGLESv2** project need link these libs: **d3d9.lib dxguid.lib**
+		- **libEGL** project need link these libs: **libGLESv2.lib**
+		- **skia** project need support asm file: **SkJumper\_generated\_win.S**
+			- 项类型 | 自定义生成工具
+				- 命令行 | `ml64 /Fo "%(Filename)_x64_static_debug.obj" /c "..\..\..\src\jumper\SkJumper_generated_win.S"`
+				- 说明 | `build %(Filename).s file to %(Filename)_x64_static_debug.obj`
+				- 输出 | %(fileName)_x64_static_debug.obj
+		- **SampleApp** project
+			- link libs: `samples.lib;gm.lib;avx.lib;skia.lib;effects.lib;libEGL.lib;gpu.lib;pdf.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;views.lib;tool_utils.lib;gpu_tool_utils.lib;experimental_svg_model.lib;xml.lib;expat.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gm /WHOLEARCHIVE:samples /WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+				- Refer to: [c-static-variable-in-lib-does-not-initialize](https://stackoverflow.com/questions/23797681/c-static-variable-in-lib-does-not-initialize)
+				- Description: Recently I discovered that Visual Studio 2015 now supports a /WHOLEARCHIVE linker flag. I can't find it through the linker options, but you can add it as an additional command line option. It works similar to the GCC flag -whole-archive and you add it to your target linker flags (not to the static lib flags).  For example, specify /WHOLEARCHIVE:lib\_name as an additional linker command line option and it will include all symbols from that lib. You can do this more than one lib as well. If you use this /WHOLEARCHIVE:lib_name you no longer need the 'Link Library Dependencies' and 'Use Library Dependency Inputs' set to Yes. This is perfect for solutions generated through CMAKE.
+			- Run:
+				- help: `.\Static\x64\Debug\SampleApp.exe --help`
+				- 指定resource和每一个起始的sample: `.\Static\x64\Debug\SampleApp.exe --resourcePath "%SKIA_DIR%\skia_m63\resources" --slide "BigBlur"`
+		- All projects
+			- 优化 | 已禁用 (/Od)
+	- Other
+		- bookmaker
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\bookmaker.exe --help`
+		- colorspaceinfo
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;tool_utils.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\colorspaceinfo.exe --help`
+		- create\_flutter\_test\_images
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\create_flutter_test_images.exe --help`
+		- create\_test\_font
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\create_test_font.exe --help`
+		- dm
+			- link libs: `tests.lib;skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;libEGL.lib;common_flags.lib;flags.lib;experimental_svg_model.lib;xml.lib;expat.lib;pdf.lib;tool_utils.lib;gpu_tool_utils.lib;jsoncpp.lib;gm.lib;OpenGL32.lib;FontSub.lib;`
+			- link add command: `/WHOLEARCHIVE:tests /WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\dm.exe --help`
+		- dump\_record
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- Run:
+				- help: `.\Static\x64\Debug\dump_record.exe --help`
+		- fiddle
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;pdf.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\fiddle.exe --help`
+		- fuzz
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;jsoncpp.lib;tool_utils.lib;gpu_tool_utils.lib;pdf.lib;libEGL.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags  `
+			- Run:
+				- help: `.\Static\x64\Debug\fuzz.exe --help`
+		- get\_images\_from\_skps
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;jsoncpp.lib;OpenGL32.lib;`
+			- Run:
+				- help: `.\Static\x64\Debug\get_images_from_skps.exe --help`
+		- nanobench
+			- link libs: `bench.lib;gm.lib;skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;common_flags.lib;flags.lib;tool_utils.lib;gpu_tool_utils.lib;libEGL.lib;experimental_svg_model.lib;xml.lib;expat.lib;pdf.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:bench /WHOLEARCHIVE:gm /WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\nanobench.exe --help`
+		- ok
+			- link libs: `bench.lib;tests.lib;gm.lib;skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;gpu_tool_utils.lib;libEGL.lib;common_flags.lib;flags.lib;OpenGL32.lib;pdf.lib;xml.lib;expat.lib;`
+			- link add command: `/WHOLEARCHIVE:bench /WHOLEARCHIVE:tests /WHOLEARCHIVE:gm /WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\ok.exe --help`
+		- pathops\_unittest
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;gpu_tool_utils.lib;libEGL.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\pathops_unittest.exe --help`
+		- skdiff
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\skdiff.exe --help`
+		- skiaserve
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;gpu_tool_utils.lib;libEGL.lib;common_flags.lib;flags.lib;jsoncpp.lib;libmicrohttpd.lib;OpenGL32.lib;Ws2_32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\skiaserve.exe --help`
+		- skp_parser
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;jsoncpp.lib;OpenGL32.lib;tool_utils.lib;`
+			- Run:
+				- help: `.\Static\x64\Debug\skp_parser.exe --help`
+		- skpbench
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;gpu_tool_utils.lib;libEGL.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\skpbench.exe --help`
+		- sktexttopdf
+			- link libs: `skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;pdf.lib;OpenGL32.lib;`
+			- Run:
+				- help: `.\Static\x64\Debug\sktexttopdf.exe --help`
+		- viewer
+			- link libs: `gm.lib;samples.lib;experimental_svg_model.lib;imgui.lib;views.lib;xml.lib;expat.lib;jsoncpp.lib;skia.lib;avx.lib;effects.lib;png.lib;libpng.lib;zlib.lib;zlib_x86.lib;jpeg.lib;libjpeg.lib;webp.lib;libwebp.lib;libwebp_avx2.lib;libwebp_sse41.lib;sse2.lib;sse41.lib;sse42.lib;ssse3.lib;gpu.lib;tool_utils.lib;gpu_tool_utils.lib;libEGL.lib;common_flags.lib;flags.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gm /WHOLEARCHIVE:samples /WHOLEARCHIVE:common_flags /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\viewer.exe --help` 
+				- 指定resource和每一个起始的sample: `.\Static\x64\Debug\viewer.exe --resourcePath "%SKIA_DIR%\skia_m63\resources" --slide "BigBlur"`
