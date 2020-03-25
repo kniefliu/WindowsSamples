@@ -66,7 +66,7 @@ config("default") {
 
     if (msvc == 2015) {
       _include_dirs = [ "$win_vc/include" ]
-    } else {  # 2017
+    } else {  # 2019
       _include_dirs = [ "$win_vc/Tools/MSVC/$win_toolchain_version/include" ]
     }
     _include_dirs += [
@@ -97,7 +97,7 @@ config("default") {
       } else {
         lib_dirs += [ "$win_vc/lib/amd64" ]
       }
-    } else {  # 2017
+    } else {  # 2019
       lib_dirs +=
           [ "$win_vc/Tools/MSVC/$win_toolchain_version/lib/$target_cpu" ]
     }

@@ -69,7 +69,7 @@ set_defaults("third_party") {
     configs -= [ "//gn:msvc_rtc" ]
   }
   if (is_debug) {
-    configs += [ "//gn:optimize" ]
+    #configs += [ "//gn:optimize" ]
   }
 }
 

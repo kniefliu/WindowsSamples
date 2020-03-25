@@ -52,7 +52,7 @@
 
 DECLARE_HANDLE(HPBUFFER);
 
-class SkWGLExtensions {
+class SK_API SkWGLExtensions {
 public:
     SkWGLExtensions();
     /**
@@ -135,7 +135,7 @@ enum SkWGLContextRequest {
  * context cannot be created. If preferCoreProfile is true but a core profile cannot be created
  * then a compatible profile context will be created.
  */
-HGLRC SkCreateWGLContext(HDC dc, int msaaSampleCount, bool deepColor, SkWGLContextRequest context,
+HGLRC SK_API SkCreateWGLContext(HDC dc, int msaaSampleCount, bool deepColor, SkWGLContextRequest context,
                          HGLRC shareContext = nullptr);
 
 /**

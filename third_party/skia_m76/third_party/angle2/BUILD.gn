@@ -4,6 +4,7 @@
 # found in the LICENSE file.
 
 declare_args() {
+  angle_use_commit = true
 }
 
 angle_root = "../externals/angle2"
@@ -70,13 +71,15 @@ config("common") {
   }
 }
 
-copy("commit_id") {
-  sources = [
-    "$angle_root/src/commit.h",
-  ]
-  outputs = [
-    "$root_gen_dir/angle2/id/commit.h",
-  ]
+if (angle_use_commit) {
+  copy("commit_id") {
+    sources = [
+      "$angle_root/src/commit.h",
+    ]
+    outputs = [
+      "$root_gen_dir/angle2/id/commit.h",
+    ]
+  }
 }
 
 shared_library("libGLESv2") {
@@ -86,9 +89,13 @@ shared_library("libGLESv2") {
     "LIBANGLE_IMPLEMENTATION",
     "LIBGLESV2_IMPLEMENTATION",
   ]
-  deps = [
-    ":commit_id",
-  ]
+  if (angle_use_commit) {
+    deps = [
+      ":commit_id",
+    ]
+  } else {
+    deps = []
+  }
   libs = []
   sources = rebase_path(
           angle_preprocessor_sources + angle_translator_sources +
