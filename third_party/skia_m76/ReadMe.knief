@@ -1,0 +1,8 @@
+20200325
+    skia from https://skia.googlesource.com/skia.git 
+        version_hash(f13f8690bede09ca97071e9786d68bc0758a24cc)
+        branch_name(chrome/m76)
+        
+    // Force git to always ask for a password
+        git config --local credential.helper ''
+        
