@@ -34,12 +34,12 @@ platform_tools/android/apps/*/.externalNativeBuild
 tools/skp/page_sets/data/*.json
 tools/skp/page_sets/data/*.wpr
 
-common
+/common
 buildtools
-third_party/externals
+#third_party/externals
 
 bin/gn
-bin/gn.exe
+#bin/gn.exe
 bin/clang-format
 bin/clang-format.exe
 
