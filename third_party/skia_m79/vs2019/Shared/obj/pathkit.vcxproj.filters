@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src\pathops">
+      <UniqueIdentifier>{A46682AE-B9D2-1D7C-053A-4DDD0275FA1E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{C5D85D62-2D1F-BBD0-3190-3BB2E70B1772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\pathops">
+      <UniqueIdentifier>{6564231E-1F11-3868-1BFD-525F8CCC49D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{882A7C1D-17D6-E17D-2881-F3658AB049AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{AFD75FDB-0789-D3F8-5663-F4E6C06D9784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\effects">
+      <UniqueIdentifier>{2E771C6D-D5D7-7688-B01E-2CAA009B657C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ports">
+      <UniqueIdentifier>{53D64102-7E15-4D31-9778-9926B4F6A6CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{8FC2063E-4721-2C9C-FF62-6C19AE822741}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../src/pathops/SkAddIntersections.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkIntersectionHelper.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkIntersections.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkLineParameters.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkOpAngle.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkOpCoincidence.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkOpContour.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkOpEdgeBuilder.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkOpSegment.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkOpSpan.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsBounds.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsCommon.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsConic.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsCubic.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsCurve.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsDebug.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsLine.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsPoint.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsQuad.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsRect.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsTSect.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathOpsTypes.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkPathWriter.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../src/pathops/SkReduceOrder.h">
+      <Filter>src\pathops</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../include/pathops/SkPathOps.h">
+      <Filter>include\pathops</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../src/pathops/SkAddIntersections.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkDConicLineIntersection.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkDCubicLineIntersection.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkDCubicToQuads.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkDLineIntersection.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkDQuadLineIntersection.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkIntersections.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpAngle.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpBuilder.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpCoincidence.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpContour.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpCubicHull.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpEdgeBuilder.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpSegment.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkOpSpan.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsAsWinding.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsCommon.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsConic.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsCubic.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsCurve.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsDebug.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsLine.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsOp.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsQuad.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsRect.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsSimplify.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsTSect.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsTightBounds.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsTypes.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathOpsWinding.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkPathWriter.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/pathops/SkReduceOrder.cpp">
+      <Filter>src\pathops</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkAnalyticEdge.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkArenaAlloc.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkContourMeasure.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkCubicMap.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkEdge.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkEdgeBuilder.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkEdgeClipper.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkGeometry.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkLineClipper.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkMallocPixelRef.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkMath.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkMatrix.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkOpts.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkPaint.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkPath.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkPathEffect.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkPathMeasure.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkPathRef.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkPoint.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkRRect.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkRect.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkSemaphore.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkStream.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkString.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkStringUtils.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkStroke.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkStrokeRec.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkStrokerPriv.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkThreadID.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/core/SkUtils.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/effects/SkDashPathEffect.cpp">
+      <Filter>src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/effects/SkTrimPathEffect.cpp">
+      <Filter>src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/ports/SkDebug_stdio.cpp">
+      <Filter>src\ports</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/ports/SkMemory_malloc.cpp">
+      <Filter>src\ports</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/utils/SkDashPath.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/utils/SkParse.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/utils/SkParsePath.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../src/utils/SkUTF.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

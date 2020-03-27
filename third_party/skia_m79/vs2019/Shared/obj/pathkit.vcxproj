@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5EA48C96-7E87-D00B-B722-C9BE1975D559}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>pathkit</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetPath>$(OutDir)\pathkit.lib</TargetPath>
+    <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4800;4291;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;SKIA_DLL;SK_SUPPORT_ATLAS_TEXT=1;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;GR_TEST_UTILS=1;SK_ANGLE;SKIA_IMPLEMENTATION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../src/pathops/SkAddIntersections.h" />
+    <ClInclude Include="../../../src/pathops/SkIntersectionHelper.h" />
+    <ClInclude Include="../../../src/pathops/SkIntersections.h" />
+    <ClInclude Include="../../../src/pathops/SkLineParameters.h" />
+    <ClInclude Include="../../../src/pathops/SkOpAngle.h" />
+    <ClInclude Include="../../../src/pathops/SkOpCoincidence.h" />
+    <ClInclude Include="../../../src/pathops/SkOpContour.h" />
+    <ClInclude Include="../../../src/pathops/SkOpEdgeBuilder.h" />
+    <ClInclude Include="../../../src/pathops/SkOpSegment.h" />
+    <ClInclude Include="../../../src/pathops/SkOpSpan.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsBounds.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsCommon.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsConic.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsCubic.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsCurve.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsDebug.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsLine.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsPoint.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsQuad.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsRect.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsTSect.h" />
+    <ClInclude Include="../../../src/pathops/SkPathOpsTypes.h" />
+    <ClInclude Include="../../../src/pathops/SkPathWriter.h" />
+    <ClInclude Include="../../../src/pathops/SkReduceOrder.h" />
+    <ClInclude Include="../../../include/pathops/SkPathOps.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../src/pathops/SkAddIntersections.cpp" />
+    <ClCompile Include="../../../src/pathops/SkDConicLineIntersection.cpp" />
+    <ClCompile Include="../../../src/pathops/SkDCubicLineIntersection.cpp" />
+    <ClCompile Include="../../../src/pathops/SkDCubicToQuads.cpp" />
+    <ClCompile Include="../../../src/pathops/SkDLineIntersection.cpp" />
+    <ClCompile Include="../../../src/pathops/SkDQuadLineIntersection.cpp" />
+    <ClCompile Include="../../../src/pathops/SkIntersections.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpAngle.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpBuilder.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpCoincidence.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpContour.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpCubicHull.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpEdgeBuilder.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpSegment.cpp" />
+    <ClCompile Include="../../../src/pathops/SkOpSpan.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsAsWinding.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsCommon.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsConic.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsCubic.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsCurve.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsDebug.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsLine.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsOp.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsQuad.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsRect.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsSimplify.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsTSect.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsTightBounds.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsTypes.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathOpsWinding.cpp" />
+    <ClCompile Include="../../../src/pathops/SkPathWriter.cpp" />
+    <ClCompile Include="../../../src/pathops/SkReduceOrder.cpp" />
+    <ClCompile Include="../../../src/core/SkAnalyticEdge.cpp" />
+    <ClCompile Include="../../../src/core/SkArenaAlloc.cpp" />
+    <ClCompile Include="../../../src/core/SkContourMeasure.cpp" />
+    <ClCompile Include="../../../src/core/SkCubicMap.cpp" />
+    <ClCompile Include="../../../src/core/SkEdge.cpp" />
+    <ClCompile Include="../../../src/core/SkEdgeBuilder.cpp" />
+    <ClCompile Include="../../../src/core/SkEdgeClipper.cpp" />
+    <ClCompile Include="../../../src/core/SkGeometry.cpp" />
+    <ClCompile Include="../../../src/core/SkLineClipper.cpp" />
+    <ClCompile Include="../../../src/core/SkMallocPixelRef.cpp" />
+    <ClCompile Include="../../../src/core/SkMath.cpp" />
+    <ClCompile Include="../../../src/core/SkMatrix.cpp" />
+    <ClCompile Include="../../../src/core/SkOpts.cpp" />
+    <ClCompile Include="../../../src/core/SkPaint.cpp" />
+    <ClCompile Include="../../../src/core/SkPath.cpp" />
+    <ClCompile Include="../../../src/core/SkPathEffect.cpp" />
+    <ClCompile Include="../../../src/core/SkPathMeasure.cpp" />
+    <ClCompile Include="../../../src/core/SkPathRef.cpp" />
+    <ClCompile Include="../../../src/core/SkPoint.cpp" />
+    <ClCompile Include="../../../src/core/SkRRect.cpp" />
+    <ClCompile Include="../../../src/core/SkRect.cpp" />
+    <ClCompile Include="../../../src/core/SkSemaphore.cpp" />
+    <ClCompile Include="../../../src/core/SkStream.cpp" />
+    <ClCompile Include="../../../src/core/SkString.cpp" />
+    <ClCompile Include="../../../src/core/SkStringUtils.cpp" />
+    <ClCompile Include="../../../src/core/SkStroke.cpp" />
+    <ClCompile Include="../../../src/core/SkStrokeRec.cpp" />
+    <ClCompile Include="../../../src/core/SkStrokerPriv.cpp" />
+    <ClCompile Include="../../../src/core/SkThreadID.cpp" />
+    <ClCompile Include="../../../src/core/SkUtils.cpp" />
+    <ClCompile Include="../../../src/effects/SkDashPathEffect.cpp" />
+    <ClCompile Include="../../../src/effects/SkTrimPathEffect.cpp" />
+    <ClCompile Include="../../../src/ports/SkDebug_stdio.cpp" />
+    <ClCompile Include="../../../src/ports/SkMemory_malloc.cpp" />
+    <ClCompile Include="../../../src/utils/SkDashPath.cpp" />
+    <ClCompile Include="../../../src/utils/SkParse.cpp" />
+    <ClCompile Include="../../../src/utils/SkParsePath.cpp" />
+    <ClCompile Include="../../../src/utils/SkUTF.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
