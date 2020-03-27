@@ -72,7 +72,7 @@ set_defaults("third_party") {
   }
 
   if (is_debug) {
-    configs += [ "//gn:optimize" ]
+    #configs += [ "//gn:optimize" ]
   }
 }
 

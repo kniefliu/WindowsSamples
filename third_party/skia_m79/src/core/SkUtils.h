@@ -31,8 +31,8 @@ static inline void sk_memset64(uint64_t buffer[], uint64_t value, int count) {
 
 // Unlike the functions in SkUTF.h, these two functions do not take an array
 // length parameter.  When possible, use SkUTF::NextUTF{8,16} instead.
-SkUnichar SkUTF8_NextUnichar(const char**);
-SkUnichar SkUTF16_NextUnichar(const uint16_t**);
+SK_API SkUnichar SkUTF8_NextUnichar(const char**);
+SK_API SkUnichar SkUTF16_NextUnichar(const uint16_t**);
 
 ///////////////////////////////////////////////////////////////////////////////
 
