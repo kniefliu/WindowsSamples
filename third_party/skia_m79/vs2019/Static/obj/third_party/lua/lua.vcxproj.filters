@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..\..\third_party\externals\lua">
+      <UniqueIdentifier>{065C91FC-01AF-D535-26F3-DBD2EA3F8BEB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party\externals">
+      <UniqueIdentifier>{AA2D7338-93F3-927B-CA6F-5DA0C10A5E77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party">
+      <UniqueIdentifier>{F88318E6-F850-6A80-FDF6-B1A366449460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..">
+      <UniqueIdentifier>{A8A4AA46-5437-4AB8-6540-F14ED994B38E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{78245A82-158D-7D20-54A6-7C428D0A7B36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../../../third_party/externals/lua/lapi.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lauxlib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lbaselib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lbitlib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lcode.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lcorolib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lctype.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ldblib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ldebug.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ldo.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ldump.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lfunc.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lgc.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/linit.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/liolib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/llex.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lmathlib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lmem.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/loadlib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lobject.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lopcodes.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/loslib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lparser.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lstate.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lstring.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lstrlib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ltable.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ltablib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/ltm.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lundump.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lutf8lib.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lvm.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/lua/lzio.c">
+      <Filter>..\..\third_party\externals\lua</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

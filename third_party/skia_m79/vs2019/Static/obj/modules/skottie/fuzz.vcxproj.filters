@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..\..\tools">
+      <UniqueIdentifier>{3427531A-FF21-E0FE-BAB7-2CC0A22B68AB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..">
+      <UniqueIdentifier>{A8A4AA46-5437-4AB8-6540-F14ED994B38E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{78245A82-158D-7D20-54A6-7C428D0A7B36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\tools\fonts">
+      <UniqueIdentifier>{FDFD93F8-008A-6328-1953-0AEDC676E07B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fuzz">
+      <UniqueIdentifier>{E7AC4451-D0C4-53F9-D61B-B7E643692DFF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../../../tools/Resources.cpp">
+      <Filter>..\..\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../tools/fonts/TestFontMgr.cpp">
+      <Filter>..\..\tools\fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../tools/fonts/TestSVGTypeface.cpp">
+      <Filter>..\..\tools\fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../tools/fonts/TestTypeface.cpp">
+      <Filter>..\..\tools\fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/skottie/fuzz/FuzzSkottieJSON.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

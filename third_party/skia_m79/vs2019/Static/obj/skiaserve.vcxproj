@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FF045445-9453-A8DC-57F3-85FD660AAE41}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>skiaserve</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.25.28610/include;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/shared;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/ucrt;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/um;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/winrt;../../../include/third_party/vulkan;../../..;../../../third_party/externals/microhttpd/src/include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\winrt;$(VSInstallDir)\VC\atlmfc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /utf-8 /GR- /Z7 %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4800;4291;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;GR_TEST_UTILS=1;SK_ANGLE;SK_GL;SK_ENABLE_DUMP_GPU;SK_SUPPORT_PDF;SK_HAS_JPEG_LIBRARY;SK_HAS_HEIF_LIBRARY;SK_HAS_PNG_LIBRARY;SK_ENABLE_SKSL_INTERPRETER;SK_HAS_WEBP_LIBRARY;SK_XML;SK_SUPPORT_ATLAS_TEXT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>CONSOLE</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../tools/skiaserve/Request.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/Response.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/skiaserve.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/BreakHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/ClipAlphaHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/CmdHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/ColorModeHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/DataHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/DownloadHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/EnableGPUHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/ImgHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/InfoHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/OpBoundsHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/OpsHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/OverdrawHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/PostHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/QuitHandler.cpp" />
+    <ClCompile Include="../../../tools/skiaserve/urlhandlers/RootHandler.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

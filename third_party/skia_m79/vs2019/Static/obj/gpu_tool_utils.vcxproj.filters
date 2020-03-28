@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="tools\gpu">
+      <UniqueIdentifier>{099BE127-C8D4-850F-504B-2A9E7AE77F02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{0E9715BA-57B3-F23F-1EED-56699DC72D4B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\gpu\atlastext">
+      <UniqueIdentifier>{68290A6F-0DD7-BA17-6735-2C12E0DDE055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\gpu\gl">
+      <UniqueIdentifier>{1EE39156-C37D-C0C4-7763-D1A1DBFA9D8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\gpu\gl\command_buffer">
+      <UniqueIdentifier>{090FF599-0E7D-1135-0747-30D9D831DF3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\gpu\mock">
+      <UniqueIdentifier>{452E7D87-36E9-D72A-88E4-2DC6571C6E0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\gpu\gl\win">
+      <UniqueIdentifier>{11DAE5B8-CA58-D3D8-DF60-A9697EE93769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\gpu\gl\angle">
+      <UniqueIdentifier>{DF1C199F-D9A1-5282-6C4E-8C23B4A9A2B7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../tools/gpu/MemoryCache.h">
+      <Filter>tools\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../tools/gpu/YUVUtils.h">
+      <Filter>tools\gpu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../tools/gpu/GrContextFactory.cpp">
+      <Filter>tools\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/GrTest.cpp">
+      <Filter>tools\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/MemoryCache.cpp">
+      <Filter>tools\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/ProxyUtils.cpp">
+      <Filter>tools\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/TestContext.cpp">
+      <Filter>tools\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/YUVUtils.cpp">
+      <Filter>tools\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/atlastext/GLTestAtlasTextRenderer.cpp">
+      <Filter>tools\gpu\atlastext</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/gl/GLTestContext.cpp">
+      <Filter>tools\gpu\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/gl/command_buffer/GLTestContext_command_buffer.cpp">
+      <Filter>tools\gpu\gl\command_buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/mock/MockTestContext.cpp">
+      <Filter>tools\gpu\mock</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/gl/win/CreatePlatformGLTestContext_win.cpp">
+      <Filter>tools\gpu\gl\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/gpu/gl/angle/GLTestContext_angle.cpp">
+      <Filter>tools\gpu\gl\angle</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

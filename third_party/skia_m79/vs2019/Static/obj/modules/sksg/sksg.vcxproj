@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B5CBFDC3-BC7A-A7CB-78E7-06727B9DFC63}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>sksg</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../../../modules/sksg/include;../../../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4800;4291;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;GR_TEST_UTILS=1;SK_ANGLE;SK_GL;SK_ENABLE_DUMP_GPU;SK_SUPPORT_PDF;SK_HAS_JPEG_LIBRARY;SK_HAS_HEIF_LIBRARY;SK_HAS_PNG_LIBRARY;SK_ENABLE_SKSL_INTERPRETER;SK_HAS_WEBP_LIBRARY;SK_XML;SK_SUPPORT_ATLAS_TEXT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../../../modules/sksg/src/SkSGNodePriv.h" />
+    <ClInclude Include="../../../../../modules/sksg/src/SkSGTransformPriv.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGClipEffect.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGColorFilter.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGDraw.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGEffectNode.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGeometryNode.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGeometryTransform.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGradient.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGroup.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGImage.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGInvalidationController.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGMaskEffect.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGMerge.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGNode.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGOpacityEffect.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGPaint.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGPath.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGPlane.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRect.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRenderEffect.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRenderNode.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRoundEffect.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGScene.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGText.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGTransform.cpp" />
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGTrimEffect.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

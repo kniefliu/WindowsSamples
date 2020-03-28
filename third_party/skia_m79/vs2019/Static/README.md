@@ -1,0 +1,109 @@
+# skia vs2019
+
+- viewer
+	- Compile & Run
+		- **ninja to vs2019**: src(ninja full path); dest(vs2015 full path); `python msvc_project_tool.py -src="./ninja-Static" -dest="./Static"`
+		- **libGLESv2** project need link these libs: **d3d9.lib dxgi.lib**
+		- **libEGL** project need link these libs: **libGLESv2.lib**
+		- **skia** project 
+		- **viewer** project
+			- link libs: `skia.lib;particles.lib;skottie.lib;sksg.lib;imgui.lib;expat.lib;skshaper.lib;lua.lib;common_flags_gpu.lib;experimental_svg_model.lib;flags.lib;gm.lib;gpu_tool_utils.lib;samples.lib;sk_app.lib;tool_utils.lib;trace.lib;skottie_utils.lib;sksg_samples.lib;skottie_gm.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;liblua.lib;etc1.lib;OpenGL32.lib;FontSub.lib;Usp10.lib;DbgHelp.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:sk_app /WHOLEARCHIVE:gm /WHOLEARCHIVE:samples /WHOLEARCHIVE:skottie_gm /WHOLEARCHIVE:sksg_samples /WHOLEARCHIVE:lua /WHOLEARCHIVE:experimental_svg_model /WHOLEARCHIVE:flags /WHOLEARCHIVE:common_flags_gpu /WHOLEARCHIVE:etc1 /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:tool_utils /WHOLEARCHIVE:trace /WHOLEARCHIVE:skottie_utils `
+				- Refer to: [c-static-variable-in-lib-does-not-initialize](https://stackoverflow.com/questions/23797681/c-static-variable-in-lib-does-not-initialize)
+				- Description: Recently I discovered that Visual Studio 2015 now supports a /WHOLEARCHIVE linker flag. I can't find it through the linker options, but you can add it as an additional command line option. It works similar to the GCC flag -whole-archive and you add it to your target linker flags (not to the static lib flags).  For example, specify /WHOLEARCHIVE:lib\_name as an additional linker command line option and it will include all symbols from that lib. You can do this more than one lib as well. If you use this /WHOLEARCHIVE:lib_name you no longer need the 'Link Library Dependencies' and 'Use Library Dependency Inputs' set to Yes. This is perfect for solutions generated through CMAKE.
+			- Run:
+				- help: `.\Static\x64\Debug\viewer.exe --help`
+				- start the sample: `.\Static\x64\Debug\viewer.exe --resourcePath "..\..\..\resources" --slide "Particles"`
+		- All projects
+			- 优化 | 已禁用 (/Od)
+	- Other
+		- cpu\_modules
+			- link libs: `particles.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\cpu_modules.exe --help`
+		- create\_test\_font
+			- link libs: `skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\create_test_font.exe --help`
+		- create\_test\_font\_color
+			- link libs: `flags.lib;tool_utils.lib;gpu_tool_utils.lib;experimental_svg_model.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\create_test_font_color.exe --help`
+		- dm
+			- link libs: `skshaper.lib;skottie.lib;sksg.lib;common_flags_aa.lib;common_flags_config.lib;common_flags_gpu.lib;common_flags_images.lib;experimental_svg_model.lib;flags.lib;gm.lib;gpu_tool_utils.lib;hash_and_encode.lib;ests.lib;tool_utils.lib;trace.lib;skottie_utils.lib;etc1.lib;skottie_gm.lib;skvm_builders_lib;skottie_tests.lib;sksg_tests.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:common_flags_aa /WHOLEARCHIVE:common_flags_config /WHOLEARCHIVE:common_flags_gpu /WHOLEARCHIVE:common_flags_images /WHOLEARCHIVE:flags /WHOLEARCHIVE:gm /WHOLEARCHIVE:tests /WHOLEARCHIVE:skottie_gm /WHOLEARCHIVE:skottie_tests /WHOLEARCHIVE:skottie_utils /WHOLEARCHIVE:sksg /WHOLEARCHIVE:sksg_tests `
+			- Run:
+				- help: `.\Static\x64\Debug\dm.exe --help`
+		- dump\_record
+			- link libs: `flags.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+            - link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\dump_record.exe --help`
+		- fiddle
+			- link libs: `skottie.lib;skshaper.lib;sksg.lib;flags.lib;gpu_tool_utils.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:flags /WHOLEARCHIVE:gpu_tool_utils `
+			- Run:
+				- help: `.\Static\x64\Debug\fiddle.exe --help`                
+        - fiddle\_examples
+			- link libs: `skottie.lib;skshaper.lib;sksg.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\fiddle_examples.exe --help`
+        - fm
+			- link libs: `common_flags_aa.lib;common_flags_gpu.lib;experimental_svg_model.lib;flags.lib;gm.lib;gpu_tool_utils.lib;hash_and_encode.lib;tool_utils.lib;trace.lib;skottie_utils.lib;etc1.lib;skottie_gm.lib;skottie.lib;skshaper.lib;sksg.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;DbgHelp.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:common_flags_aa /WHOLEARCHIVE:common_flags_gpu /WHOLEARCHIVE:experimental_svg_model /WHOLEARCHIVE:flags /WHOLEARCHIVE:gm /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:hash_and_encode /WHOLEARCHIVE:tool_utils /WHOLEARCHIVE:trace /WHOLEARCHIVE:skottie_utils /WHOLEARCHIVE:etc1 /WHOLEARCHIVE:skottie_gm `
+			- Run:
+				- help: `.\Static\x64\Debug\fm.exe --help`
+		- fuzz
+			- link libs: `flags.lib;gpu_tool_utils.lib;skottie_fuzz.lib;experimental_svg_model.lib;skottie.lib;skshaper.lib;sksg.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:flags /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:skottie_fuzz /WHOLEARCHIVE:experimental_svg_model `
+			- Run:
+				- help: `.\Static\x64\Debug\fuzz.exe --help`
+		- get\_images\_from\_skps
+			- link libs: `flags.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:flags `
+			- Run:
+				- help: `.\Static\x64\Debug\get_images_from_skps.exe --help`
+        - image\_diff\_metric
+			- link libs: `skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\image_diff_metric.exe --help`
+        - imgcvt
+			- link libs: `skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\imgcvt.exe --help`
+        - list\_gms
+			- link libs: `gm.lib;gpu_tool_utils.lib;etc1.lib;flags.lib;tool_utils.lib;experimental_svg_model.lib;skottie_gm.lib;skottie_utils.lib;skottie.lib;skshaper.lib;sksg.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;DbgHelp.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml /WHOLEARCHIVE:gm /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:etc1 /WHOLEARCHIVE:flags /WHOLEARCHIVE:tool_utils /WHOLEARCHIVE:experimental_svg_model /WHOLEARCHIVE:skottie_gm /WHOLEARCHIVE:skottie_utils `
+			- Run:
+				- help: `.\Static\x64\Debug\list_gms.exe --help`
+        - list\_gpu\_unit\_tests
+			- link libs: `tests.lib;gpu_tool_utils.lib;experimental_svg_model.lib;flags.lib;skvm_builders.lib;tool_utils.lib;skottie_tests.lib;sksg_tests.lib;skottie.lib;skshaper.lib;sksg.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;DbgHelp.lib;`
+			- link add command: `/WHOLEARCHIVE:tests /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:experimental_svg_model /WHOLEARCHIVE:flags /WHOLEARCHIVE:skvm_builders /WHOLEARCHIVE:tool_utils /WHOLEARCHIVE:skottie_tests /WHOLEARCHIVE:sksg_tests /WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+            - Run:
+				- help: `.\Static\x64\Debug\list_gpu_unit_tests.exe --help`
+        - lua\_app
+			- link libs: `lua.lib;liblua.lib;skshaper.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:lua /WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\lua_app.exe --help`
+        - lua\_pictures
+			- link libs: `lua.lib;liblua.lib;flags.lib;tool_utils.lib;gpu_tool_utils.lib;experimental_svg_model.lib;skshaper.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;DbgHelp.lib`
+			- link add command: `/WHOLEARCHIVE:lua /WHOLEARCHIVE:flags /WHOLEARCHIVE:tool_utils /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:experimental_svg_model /WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\lua_pictures.exe --help`
+        - make\_skqp\_model
+			- link libs: `skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;`
+			- link add command: `/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\make_skqp_model.exe --help`
+		- nanobench
+			- link libs: `bench.lib;common_flags_aa.lib;common_flags_config.lib;common_flags_gpu.lib;common_flags_images.lib;experimental_svg_model.lib;flags.lib;gm.lib;gpu_tool_utils.lib;tool_utils.lib;trace.lib;etc1.lib;skottie_gm.lib;skottie_utils.lib;skvm_builders.lib;skottie.lib;skshaper.lib;sksg.lib;skia.lib;avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;libpng.lib;libjpeg.lib;zlib.lib;zlib_x86.lib;libEGL.lib;libwebp.lib;libwebp_sse41.lib;expat.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;DbgHelp.lib;`
+			- link add command: `/WHOLEARCHIVE:bench /WHOLEARCHIVE:common_flags_aa /WHOLEARCHIVE:common_flags_config /WHOLEARCHIVE:common_flags_gpu /WHOLEARCHIVE:common_flags_images /WHOLEARCHIVE:experimental_svg_model /WHOLEARCHIVE:flags /WHOLEARCHIVE:gm /WHOLEARCHIVE:gpu_tool_utils /WHOLEARCHIVE:tool_utils /WHOLEARCHIVE:trace /WHOLEARCHIVE:etc1 /WHOLEARCHIVE:skottie_gm /WHOLEARCHIVE:skottie_utils /WHOLEARCHIVE:skvm_builders /WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml `
+			- Run:
+				- help: `.\Static\x64\Debug\nanobench.exe --help`

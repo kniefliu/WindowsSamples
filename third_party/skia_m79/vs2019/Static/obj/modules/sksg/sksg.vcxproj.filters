@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{C5D85D62-2D1F-BBD0-3190-3BB2E70B1772}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../../../modules/sksg/src/SkSGNodePriv.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../../../modules/sksg/src/SkSGTransformPriv.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGClipEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGColorFilter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGDraw.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGEffectNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGeometryNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGeometryTransform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGradient.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGImage.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGInvalidationController.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGMaskEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGMerge.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGOpacityEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGPaint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGPath.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGPlane.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRenderEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRenderNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGRoundEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGText.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGTransform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../modules/sksg/src/SkSGTrimEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

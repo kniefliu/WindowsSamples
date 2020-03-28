@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="fuzz">
+      <UniqueIdentifier>{E7AC4451-D0C4-53F9-D61B-B7E643692DFF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fuzz\oss_fuzz">
+      <UniqueIdentifier>{EE132B27-FBA7-19EC-03AC-9F4859A2AD87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{0E9715BA-57B3-F23F-1EED-56699DC72D4B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\debugger">
+      <UniqueIdentifier>{6A24697E-05E5-F9AF-0D0C-32022573F86A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../fuzz/Fuzz.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzCanvas.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzCommon.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzDrawFunctions.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzEncoders.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzGradients.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzMain.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzParsePath.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzPathMeasure.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzPathop.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzPolyUtils.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/FuzzRegionOp.cpp">
+      <Filter>fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzAndroidCodec.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzAnimatedImage.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzImage.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzImageFilterDeserialize.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzIncrementalImage.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzJSON.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzPathDeserialize.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzRegionDeserialize.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzRegionSetPath.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzSKSL2GLSL.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzSKSL2Metal.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzSKSL2Pipeline.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzSKSL2SPIRV.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../fuzz/oss_fuzz/FuzzTextBlobDeserialize.cpp">
+      <Filter>fuzz\oss_fuzz</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/UrlDataManager.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/debugger/DebugCanvas.cpp">
+      <Filter>tools\debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/debugger/DrawCommand.cpp">
+      <Filter>tools\debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/debugger/JsonWriteBuffer.cpp">
+      <Filter>tools\debugger</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6B0C6865-F8B9-9DED-7D38-B70216672A3F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>lua</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <ProjectName>liblua</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../../../third_party/externals/lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../../../third_party/externals/lua/lapi.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lauxlib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lbaselib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lbitlib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lcode.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lcorolib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lctype.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ldblib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ldebug.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ldo.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ldump.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lfunc.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lgc.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/linit.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/liolib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/llex.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lmathlib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lmem.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/loadlib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lobject.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lopcodes.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/loslib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lparser.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lstate.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lstring.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lstrlib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ltable.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ltablib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/ltm.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lundump.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lutf8lib.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lvm.c" />
+    <ClCompile Include="../../../../../third_party/externals/lua/lzio.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

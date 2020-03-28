@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="experimental\xform">
+      <UniqueIdentifier>{6C6F6131-6A75-9097-9D2B-EB4179D01ACC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="experimental">
+      <UniqueIdentifier>{F245AB0E-8CE1-3111-C966-26C03DE721BE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../experimental/xform/SkShape.cpp">
+      <Filter>experimental\xform</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../experimental/xform/SkXform.cpp">
+      <Filter>experimental\xform</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../experimental/xform/XContext.cpp">
+      <Filter>experimental\xform</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

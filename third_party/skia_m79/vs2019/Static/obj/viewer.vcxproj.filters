@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="tools\viewer">
+      <UniqueIdentifier>{3D0CDE21-A849-3976-FD6C-BBDDED85F4EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{0E9715BA-57B3-F23F-1EED-56699DC72D4B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../tools/viewer/AnimTimer.h">
+      <Filter>tools\viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../tools/viewer/TouchGesture.h">
+      <Filter>tools\viewer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../tools/viewer/BisectSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/GMSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/ImGuiLayer.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/ImageSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/ParticlesSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/SKPSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/SampleSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/SkottieSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/SlideDir.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/StatsLayer.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/SvgSlide.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/TouchGesture.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/viewer/Viewer.cpp">
+      <Filter>tools\viewer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

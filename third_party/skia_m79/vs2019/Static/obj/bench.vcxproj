@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1660E103-0872-2D07-A2D8-CB1ECA3D335E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>bench</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../include/third_party/vulkan;../../..;../../../modules/skshaper/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4800;4291;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;GR_TEST_UTILS=1;SK_ANGLE;SK_GL;SK_ENABLE_DUMP_GPU;SK_SUPPORT_PDF;SK_HAS_JPEG_LIBRARY;SK_HAS_HEIF_LIBRARY;SK_HAS_PNG_LIBRARY;SK_ENABLE_SKSL_INTERPRETER;SK_HAS_WEBP_LIBRARY;SK_XML;SK_SUPPORT_ATLAS_TEXT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../bench/AAClipBench.cpp" />
+    <ClCompile Include="../../../bench/AlternatingColorPatternBench.cpp" />
+    <ClCompile Include="../../../bench/AndroidCodecBench.cpp" />
+    <ClCompile Include="../../../bench/BenchLogger.cpp" />
+    <ClCompile Include="../../../bench/Benchmark.cpp" />
+    <ClCompile Include="../../../bench/BezierBench.cpp" />
+    <ClCompile Include="../../../bench/BigPathBench.cpp" />
+    <ClCompile Include="../../../bench/BitmapBench.cpp" />
+    <ClCompile Include="../../../bench/BitmapRectBench.cpp" />
+    <ClCompile Include="../../../bench/BitmapRegionDecoderBench.cpp" />
+    <ClCompile Include="../../../bench/BlendmodeBench.cpp" />
+    <ClCompile Include="../../../bench/BlurBench.cpp" />
+    <ClCompile Include="../../../bench/BlurImageFilterBench.cpp" />
+    <ClCompile Include="../../../bench/BlurRectBench.cpp" />
+    <ClCompile Include="../../../bench/BlurRectsBench.cpp" />
+    <ClCompile Include="../../../bench/CTConvertBench.cpp" />
+    <ClCompile Include="../../../bench/ChartBench.cpp" />
+    <ClCompile Include="../../../bench/ChecksumBench.cpp" />
+    <ClCompile Include="../../../bench/ChromeBench.cpp" />
+    <ClCompile Include="../../../bench/ClearBench.cpp" />
+    <ClCompile Include="../../../bench/ClipMaskBench.cpp" />
+    <ClCompile Include="../../../bench/ClipStrategyBench.cpp" />
+    <ClCompile Include="../../../bench/CmapBench.cpp" />
+    <ClCompile Include="../../../bench/CodecBench.cpp" />
+    <ClCompile Include="../../../bench/ColorFilterBench.cpp" />
+    <ClCompile Include="../../../bench/ColorPrivBench.cpp" />
+    <ClCompile Include="../../../bench/CompositingImagesBench.cpp" />
+    <ClCompile Include="../../../bench/ControlBench.cpp" />
+    <ClCompile Include="../../../bench/CoverageBench.cpp" />
+    <ClCompile Include="../../../bench/CubicKLMBench.cpp" />
+    <ClCompile Include="../../../bench/CubicMapBench.cpp" />
+    <ClCompile Include="../../../bench/DashBench.cpp" />
+    <ClCompile Include="../../../bench/DDLRecorderBench.cpp" />
+    <ClCompile Include="../../../bench/DisplacementBench.cpp" />
+    <ClCompile Include="../../../bench/DrawBitmapAABench.cpp" />
+    <ClCompile Include="../../../bench/DrawLatticeBench.cpp" />
+    <ClCompile Include="../../../bench/EncodeBench.cpp" />
+    <ClCompile Include="../../../bench/FontCacheBench.cpp" />
+    <ClCompile Include="../../../bench/FSRectBench.cpp" />
+    <ClCompile Include="../../../bench/GameBench.cpp" />
+    <ClCompile Include="../../../bench/GeometryBench.cpp" />
+    <ClCompile Include="../../../bench/GMBench.cpp" />
+    <ClCompile Include="../../../bench/GradientBench.cpp" />
+    <ClCompile Include="../../../bench/GrCCFillGeometryBench.cpp" />
+    <ClCompile Include="../../../bench/GrMemoryPoolBench.cpp" />
+    <ClCompile Include="../../../bench/GrMipMapBench.cpp" />
+    <ClCompile Include="../../../bench/GrResourceCacheBench.cpp" />
+    <ClCompile Include="../../../bench/HairlinePathBench.cpp" />
+    <ClCompile Include="../../../bench/HardStopGradientBench_ScaleNumColors.cpp" />
+    <ClCompile Include="../../../bench/HardStopGradientBench_ScaleNumHardStops.cpp" />
+    <ClCompile Include="../../../bench/HardStopGradientBench_SpecialHardStops.cpp" />
+    <ClCompile Include="../../../bench/ImageBench.cpp" />
+    <ClCompile Include="../../../bench/ImageCacheBench.cpp" />
+    <ClCompile Include="../../../bench/ImageCacheBudgetBench.cpp" />
+    <ClCompile Include="../../../bench/ImageCycleBench.cpp" />
+    <ClCompile Include="../../../bench/ImageFilterCollapse.cpp" />
+    <ClCompile Include="../../../bench/ImageFilterDAGBench.cpp" />
+    <ClCompile Include="../../../bench/InterpBench.cpp" />
+    <ClCompile Include="../../../bench/JSONBench.cpp" />
+    <ClCompile Include="../../../bench/LightingBench.cpp" />
+    <ClCompile Include="../../../bench/LineBench.cpp" />
+    <ClCompile Include="../../../bench/MagnifierBench.cpp" />
+    <ClCompile Include="../../../bench/MathBench.cpp" />
+    <ClCompile Include="../../../bench/Matrix44Bench.cpp" />
+    <ClCompile Include="../../../bench/MatrixBench.cpp" />
+    <ClCompile Include="../../../bench/MatrixConvolutionBench.cpp" />
+    <ClCompile Include="../../../bench/MemsetBench.cpp" />
+    <ClCompile Include="../../../bench/MergeBench.cpp" />
+    <ClCompile Include="../../../bench/MipMapBench.cpp" />
+    <ClCompile Include="../../../bench/MorphologyBench.cpp" />
+    <ClCompile Include="../../../bench/MutexBench.cpp" />
+    <ClCompile Include="../../../bench/PatchBench.cpp" />
+    <ClCompile Include="../../../bench/PathBench.cpp" />
+    <ClCompile Include="../../../bench/PathIterBench.cpp" />
+    <ClCompile Include="../../../bench/PathOpsBench.cpp" />
+    <ClCompile Include="../../../bench/PathTextBench.cpp" />
+    <ClCompile Include="../../../bench/PDFBench.cpp" />
+    <ClCompile Include="../../../bench/PerlinNoiseBench.cpp" />
+    <ClCompile Include="../../../bench/PictureNestingBench.cpp" />
+    <ClCompile Include="../../../bench/PictureOverheadBench.cpp" />
+    <ClCompile Include="../../../bench/PicturePlaybackBench.cpp" />
+    <ClCompile Include="../../../bench/PolyUtilsBench.cpp" />
+    <ClCompile Include="../../../bench/PremulAndUnpremulAlphaOpsBench.cpp" />
+    <ClCompile Include="../../../bench/QuickRejectBench.cpp" />
+    <ClCompile Include="../../../bench/ReadPixBench.cpp" />
+    <ClCompile Include="../../../bench/RecordingBench.cpp" />
+    <ClCompile Include="../../../bench/RectanizerBench.cpp" />
+    <ClCompile Include="../../../bench/RectBench.cpp" />
+    <ClCompile Include="../../../bench/RefCntBench.cpp" />
+    <ClCompile Include="../../../bench/RegionBench.cpp" />
+    <ClCompile Include="../../../bench/RegionContainBench.cpp" />
+    <ClCompile Include="../../../bench/RepeatTileBench.cpp" />
+    <ClCompile Include="../../../bench/RotatedRectBench.cpp" />
+    <ClCompile Include="../../../bench/RTreeBench.cpp" />
+    <ClCompile Include="../../../bench/ScalarBench.cpp" />
+    <ClCompile Include="../../../bench/ShaderMaskFilterBench.cpp" />
+    <ClCompile Include="../../../bench/ShadowBench.cpp" />
+    <ClCompile Include="../../../bench/ShapesBench.cpp" />
+    <ClCompile Include="../../../bench/Sk4fBench.cpp" />
+    <ClCompile Include="../../../bench/SkGlyphCacheBench.cpp" />
+    <ClCompile Include="../../../bench/SKPAnimationBench.cpp" />
+    <ClCompile Include="../../../bench/SkVMBench.cpp" />
+    <ClCompile Include="../../../bench/SKPBench.cpp" />
+    <ClCompile Include="../../../bench/SkSLBench.cpp" />
+    <ClCompile Include="../../../bench/SkSLInterpreterBench.cpp" />
+    <ClCompile Include="../../../bench/StreamBench.cpp" />
+    <ClCompile Include="../../../bench/SortBench.cpp" />
+    <ClCompile Include="../../../bench/StrokeBench.cpp" />
+    <ClCompile Include="../../../bench/SwizzleBench.cpp" />
+    <ClCompile Include="../../../bench/TableBench.cpp" />
+    <ClCompile Include="../../../bench/TextBlobBench.cpp" />
+    <ClCompile Include="../../../bench/TileBench.cpp" />
+    <ClCompile Include="../../../bench/TileImageFilterBench.cpp" />
+    <ClCompile Include="../../../bench/TopoSortBench.cpp" />
+    <ClCompile Include="../../../bench/TypefaceBench.cpp" />
+    <ClCompile Include="../../../bench/VertBench.cpp" />
+    <ClCompile Include="../../../bench/VertexColorSpaceBench.cpp" />
+    <ClCompile Include="../../../bench/WritePixelsBench.cpp" />
+    <ClCompile Include="../../../bench/WriterBench.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
