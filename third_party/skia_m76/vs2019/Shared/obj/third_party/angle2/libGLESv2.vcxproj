@@ -34,7 +34,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../../../../../third_party/externals/angle2/include;../../../../../third_party/externals/angle2/src;../../../../../third_party/externals/angle2/src/common/third_party/base;../../../../../third_party/externals/angle2/src/third_party/khronos;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>

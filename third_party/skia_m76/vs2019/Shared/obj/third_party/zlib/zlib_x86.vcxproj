@@ -35,7 +35,7 @@
     <TargetPath>$(OutDir)\zlib_x86.lib</TargetPath>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../../../../../third_party/externals/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>

@@ -35,7 +35,7 @@
     <TargetPath>$(OutDir)\pathkit.lib</TargetPath>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>

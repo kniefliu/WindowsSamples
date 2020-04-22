@@ -34,7 +34,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../../..;../../../third_party/libpng;../../../third_party/externals/libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>

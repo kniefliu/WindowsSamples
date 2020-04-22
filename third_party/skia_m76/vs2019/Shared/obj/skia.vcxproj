@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -34,7 +34,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../../..;../../../third_party/externals/angle2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
@@ -50,7 +50,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;pathkit.lib;pdf.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;expat.lib;libpng.lib;libwebp.lib;libwebp_sse41.lib;zlib.lib;zlib_x86.lib;libjpeg.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;pdf.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;expat.lib;libpng.lib;libwebp.lib;libwebp_sse41.lib;zlib.lib;zlib_x86.lib;libjpeg.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml %(AdditionalOptions)</AdditionalOptions>
     </Link>

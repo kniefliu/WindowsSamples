@@ -34,7 +34,7 @@
     <TargetPath>$(OutDir)\particles.lib</TargetPath>
     <IntDir>$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>../../../../../tools/timer;C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.25.28610/include;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/shared;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/ucrt;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/um;C:/Program Files (x86)/Windows Kits/10/Include/10.0.18362.0/winrt;../../../../../modules/particles/include;../../../../..;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\winrt;$(VSInstallDir)\VC\atlmfc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- /Z7 %(AdditionalOptions)</AdditionalOptions>
