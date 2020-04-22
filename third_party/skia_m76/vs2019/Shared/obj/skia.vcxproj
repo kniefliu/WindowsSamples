@@ -5,6 +5,10 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2F34EC6B-6094-194B-8D46-4F021AB0B434}</ProjectGuid>
@@ -53,6 +57,29 @@
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;pdf.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;expat.lib;libpng.lib;libwebp.lib;libwebp_sse41.lib;zlib.lib;zlib_x86.lib;libjpeg.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../..;../../../third_party/externals/angle2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4800;4291;4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;_HAS_EXCEPTIONS=0;WIN32_LEAN_AND_MEAN;NOMINMAX;SKIA_DLL;SK_SUPPORT_ATLAS_TEXT=1;SK_GAMMA_APPLY_TO_A8;SK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1;GR_TEST_UTILS=1;SK_ANGLE;SKIA_IMPLEMENTATION=1;SK_GL;SK_ENABLE_DUMP_GPU;SK_SUPPORT_PDF;SK_HAS_JPEG_LIBRARY;SK_HAS_HEIF_LIBRARY;SK_HAS_PNG_LIBRARY;SK_HAS_WEBP_LIBRARY;SK_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MaxSpeed</Optimization>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;pdf.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;expat.lib;libpng.lib;libwebp.lib;libwebp_sse41.lib;zlib.lib;zlib_x86.lib;libjpeg.lib;FontSub.lib;Usp10.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml %(AdditionalOptions)</AdditionalOptions>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
