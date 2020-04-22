@@ -3,6 +3,12 @@
 
 #pragma once
 
+#define USE_CUSTOM_TOOLTIP 0
+
+#if USE_CUSTOM_TOOLTIP
+class DuiTooltipWindow;
+#endif
+
 namespace DuiLib {
 /////////////////////////////////////////////////////////////////////////////////////
 //
@@ -207,6 +213,9 @@ public:
     HWND GetTooltipWindow() const;
 	int GetTooltipWindowWidth() const;
 	void SetTooltipWindowWidth(int iWidth);
+#if USE_CUSTOM_TOOLTIP
+    void SetTooltipEnabled(bool enabled);
+#endif
 	int GetHoverTime() const;
 	void SetHoverTime(int iTime);
 
@@ -425,8 +434,13 @@ private:
 	COLORREF* m_pBackgroundBits;
 	int m_iTooltipWidth;
     int m_iLastTooltipWidth;
+#if USE_CUSTOM_TOOLTIP
+    DuiTooltipWindow * tooltip_;
+    bool tooltip_enabled_;
+#else
 	HWND m_hwndTooltip;
 	TOOLINFO m_ToolTip;
+#endif
 	int m_iHoverTime;
     bool m_bNoActivate;
     bool m_bShowUpdateRect;

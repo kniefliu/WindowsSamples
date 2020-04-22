@@ -2,12 +2,14 @@
 #Author Qi Gao(monkgau@gmail.com)
 #Created: 2012/09/16
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
 # 创建文件过滤器
 file(GLOB SRC_Root "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 file(GLOB_RECURSE SRC_Control "${CMAKE_CURRENT_SOURCE_DIR}/Control/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/Control/*.h")
 remove(SRC_Control "${CMAKE_CURRENT_SOURCE_DIR}/Control/UIFlash.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/Control/UIFlash.h")
 source_group("Control"   FILES ${SRC_Control})
-file(GLOB_RECURSE SRC_Core "${CMAKE_CURRENT_SOURCE_DIR}/Core/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/Core/*.h")
+file(GLOB_RECURSE SRC_Core "${CMAKE_CURRENT_SOURCE_DIR}/Core/*.cc" "${CMAKE_CURRENT_SOURCE_DIR}/Core/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/Core/*.h")
 source_group("Core"   FILES ${SRC_Core})
 file(GLOB_RECURSE SRC_Layout "${CMAKE_CURRENT_SOURCE_DIR}/Layout/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/Layout/*.h")
 source_group("Layout"   FILES ${SRC_Layout})

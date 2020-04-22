@@ -16,13 +16,13 @@
 		<Slider name="s_controlor" max="200" value="100"/>
 		<Control height="4"/>
 		<Slider name="l_controlor" max="200" value="100"/>
-		<Button name="changeskinbtn" height="20" text="换肤" maxwidth="120" />
+		<Button name="changeskinbtn" height="20" text="换肤" maxwidth="120" tooltip="换肤"/>
 		<RichEdit name="testrichedit" bordercolor="#FF0000" bordersize="0" borderround="18,18" inset="4,2,4,2" bkcolor="#A0F2F5FA" bkcolor2="#A0FF0000" bkcolor3="#A0F2F5FA" font="1" multiline="true" vscrollbar="true" autovscroll="true" enabled="true" rich="true" readonly="false" text="1爱3">
 			<Control bkcolor="#FFF22E2E" float="true" pos="80,40,260,220" bkimage="winbk.bmp" />
-			<Button name="insertimagebtn" float="0.5,0.5,0.5,0.5" pos="-80,-10,80,10" text="删除自己" />
+			<Button name="insertimagebtn" float="0.5,0.5,0.5,0.5" pos="-80,-10,80,10" text="删除自己" tooltip="删除自己"/>
 		</RichEdit>
 		<Control height="26"/>
-		<Edit name="testedit" text="{a www.baidu.com}ddd{/a}" showhtml="true" maxwidth="280" bkcolor="#0000E000" nativebkcolor="#0000E000"/>
+		<Edit name="testedit" text="{a www.baidu.com}ddd{/a}" showhtml="true" maxwidth="280" bkcolor="#0000E000" nativebkcolor="#0000E000" tooltip="输入测试"/>
 		<RichEdit name="testrichedit1" bordercolor="#FF0000" bordersize="2" borderround="8,8" inset="4,2,4,2" bkcolor="#FFE2E5EA" bkcolor2="#FF00F5DA" bkcolor3="#FFF2F5FA" font="1" multiline="false" rich="false" hscrollbar="true" autohscroll="true"/>
 		<DateTime name="DateTime" width="200" height="30" bkcolor="#FFE2E5EA" padding="0,5,0,0" />
 		<CheckBox name="CheckBox1" width="20" height="20" bkcolor="#FFEA679F" />
@@ -36,7 +36,7 @@
 				<Edit text="{a www.baidu.com}ddd{/a}" />
 				<ListLabelElement text="666666666666666"/>
 			</ComboBox>
-			<Edit text="{a www.baidu.com}ddd{/a}" />
+			<Edit text="{a www.baidu.com}ddd{/a}" tooltip="html"/>
 		</ComboBox>
 		<TreeView bkcolor="#ffffffff" visiblefolderbtn="true" visiblecheckbtn="true" vscrollbar="true" >
 			<TreeNode text="A1" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='Icon/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='Icon/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='Icon/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/unchecked.png' &quot; selectedimage=&quot;file='Icon/checked.png' &quot;" >
@@ -49,7 +49,7 @@
 				</TreeNode>
 				<Edit text="扩展文本框" tipvalue="扩展文本框" width="100" />
 			</TreeNode>
-			<Edit text="扩展文本框" tipvalue="扩展文本框" width="100" />
+			<Edit text="扩展文本框" tipvalue="扩展文本框" width="100" tooltip="扩展文本框"/>
 			</TreeNode>
 			<TreeNode text="A2" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='Icon/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='Icon/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='Icon/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/unchecked.png' &quot; selectedimage=&quot;file='Icon/checked.png' &quot;" >
 			<TreeNode text="B2" folderattr="padding=&quot;0,1,0,0&quot; width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/treeview_b.png' source='0,0,16,16' &quot; hotimage=&quot;file='Icon/treeview_b.png' source='16,0,32,16' &quot; selectedimage=&quot;file='Icon/treeview_a.png' source='0,0,16,16' &quot; selectedhotimage=&quot;file='Icon/treeview_a.png' source='16,0,32,16' &quot;" checkboxattr="width=&quot;16&quot; height=&quot;16&quot; normalimage=&quot;file='Icon/unchecked.png' &quot; selectedimage=&quot;file='Icon/checked.png' &quot;" >

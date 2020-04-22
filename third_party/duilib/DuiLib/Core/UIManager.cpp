@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include <zmouse.h>
 #include <stdlib.h>
+#if USE_CUSTOM_TOOLTIP
+#include "dui_tooltip_window.h"
+#endif
 
 DECLARE_HANDLE(HZIP);	// An HZIP identifies a zip file that has been opened
 typedef DWORD ZRESULT;
@@ -101,7 +104,12 @@ m_hbmpBackground(NULL),
 m_pBackgroundBits(NULL),
 m_iTooltipWidth(-1),
 m_iLastTooltipWidth(-1),
+#if USE_CUSTOM_TOOLTIP
+tooltip_(nullptr),
+tooltip_enabled_(true),
+#else
 m_hwndTooltip(NULL),
+#endif
 m_iHoverTime(1000),
 m_bNoActivate(false),
 m_bShowUpdateRect(false),
@@ -191,11 +199,19 @@ CPaintManagerUI::~CPaintManagerUI()
     RemoveAllTimers();
 
     // Reset other parts...
-    if( m_hwndTooltip != NULL )
+#if USE_CUSTOM_TOOLTIP
+    if (tooltip_enabled_ && tooltip_)
 	{
-		::DestroyWindow(m_hwndTooltip);
-		m_hwndTooltip = NULL;
+        delete tooltip_;
+        tooltip_ = nullptr;
 	}
+#else
+    if (m_hwndTooltip != NULL)
+    {
+        ::DestroyWindow(m_hwndTooltip);
+        m_hwndTooltip = NULL;
+    }
+#endif
     m_pLastToolTip = NULL;
     if( m_hDcOffscreen != NULL ) ::DeleteDC(m_hDcOffscreen);
     if( m_hDcBackground != NULL ) ::DeleteDC(m_hDcBackground);
@@ -406,7 +422,14 @@ HWND CPaintManagerUI::GetPaintWindow() const
 
 HWND CPaintManagerUI::GetTooltipWindow() const
 {
-	return m_hwndTooltip;
+#if USE_CUSTOM_TOOLTIP
+    if (!tooltip_enabled_) {
+        return nullptr;
+    }
+	return tooltip_->GetTipHandle();
+#else
+    return m_hwndTooltip;
+#endif
 }
 
 int CPaintManagerUI::GetTooltipWindowWidth() const
@@ -418,11 +441,24 @@ void CPaintManagerUI::SetTooltipWindowWidth(int iWidth)
 {
 	if( m_iTooltipWidth != iWidth ) {
 		m_iTooltipWidth = iWidth;
-		if( m_hwndTooltip != NULL && m_iTooltipWidth >= 0  ) {
-			m_iTooltipWidth = (int)::SendMessage(m_hwndTooltip, TTM_SETMAXTIPWIDTH, 0, m_iTooltipWidth);
+#if USE_CUSTOM_TOOLTIP 
+		if (tooltip_enabled_ && tooltip_ && m_iTooltipWidth >= 0) {
+			m_iTooltipWidth = (int)tooltip_->SetMaxTipWidth(m_iTooltipWidth);
 		}
+#else
+        if (m_hwndTooltip != NULL && m_iTooltipWidth >= 0) {
+            m_iTooltipWidth = (int)::SendMessage(m_hwndTooltip, TTM_SETMAXTIPWIDTH, 0, m_iTooltipWidth);
+        }
+#endif
 	}
 }
+
+#if USE_CUSTOM_TOOLTIP 
+void CPaintManagerUI::SetTooltipEnabled(bool enabled)
+{
+    tooltip_enabled_ = enabled;
+}
+#endif
 
 int CPaintManagerUI::GetHoverTime() const
 {
@@ -817,10 +853,17 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
                 if ((GetWindowStyle(m_hWndPaint) & WS_CHILD) !=0 ) hwndParent = GetParent(m_hWndPaint);
 				if( hwndParent != NULL ) ::SetFocus(hwndParent);
 			}
-			if (m_hwndTooltip != NULL) {
-				::DestroyWindow(m_hwndTooltip);
-				m_hwndTooltip = NULL;
+#if USE_CUSTOM_TOOLTIP
+			if (tooltip_enabled_ && tooltip_ != nullptr) {
+                delete tooltip_;
+                tooltip_ = nullptr;
 			}
+#else
+            if (m_hwndTooltip != NULL) {
+                ::DestroyWindow(m_hwndTooltip);
+                m_hwndTooltip = NULL;
+            }
+#endif
         }
         break;
     case WM_ERASEBKGND:
@@ -1184,6 +1227,42 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
             CDuiString sToolTip = pHover->GetToolTip();
             if (sToolTip.IsEmpty()) return true;
             ProcessMultiLanguageTokens(sToolTip);
+#if USE_CUSTOM_TOOLTIP
+            if (tooltip_enabled_) {
+                bool tooltip_none = false;
+                if (!tooltip_) {
+                    tooltip_ = DuiTooltipWindow::MakeTooltipWindow(m_hWndPaint, kCustom_Tooltip);
+                    tooltip_none = true;
+                }
+                tooltip_->ResetTooltipInfo(const_cast<LPTSTR>((LPCTSTR)sToolTip), pHover->GetPos());
+
+                if (tooltip_none) {
+                    tooltip_->SetMaxTipWidth(pHover->GetToolTipWidth());
+                    tooltip_->ShowTip();
+                }
+
+                // by jiangdong 2016-8-6 修改tooltip 悬停时候 闪烁bug
+                if (m_pLastToolTip == NULL) {
+                    m_pLastToolTip = pHover;
+                }
+                else {
+                    if (m_pLastToolTip == pHover) {
+                        if (m_iLastTooltipWidth != pHover->GetToolTipWidth()) {
+                            tooltip_->SetMaxTipWidth(pHover->GetToolTipWidth());
+                            m_iLastTooltipWidth = pHover->GetToolTipWidth();
+
+                        }
+                        tooltip_->ShowTip();
+                    }
+                    else {
+                        tooltip_->SetMaxTipWidth(pHover->GetToolTipWidth());
+                        tooltip_->ShowTip();
+                    }
+                }
+                //修改在CListElementUI 有提示 子项无提示下无法跟随移动！（按理说不应该移动的）
+                tooltip_->MoveTip(pt);
+            }
+#else
             ::ZeroMemory(&m_ToolTip, sizeof(TOOLINFO));
             m_ToolTip.cbSize = sizeof(TOOLINFO);
             m_ToolTip.uFlags = TTF_IDISHWND;
@@ -1204,9 +1283,9 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
             if (m_pLastToolTip == NULL) {
                 m_pLastToolTip = pHover;
             }
-            else{
-                if (m_pLastToolTip == pHover){
-                    if (m_iLastTooltipWidth != pHover->GetToolTipWidth()){
+            else {
+                if (m_pLastToolTip == pHover) {
+                    if (m_iLastTooltipWidth != pHover->GetToolTipWidth()) {
                         ::SendMessage(m_hwndTooltip, TTM_SETMAXTIPWIDTH, 0, pHover->GetToolTipWidth());
                         m_iLastTooltipWidth = pHover->GetToolTipWidth();
 
@@ -1214,7 +1293,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
                     ::SendMessage(m_hwndTooltip, TTM_SETTOOLINFO, 0, (LPARAM)&m_ToolTip);
                     ::SendMessage(m_hwndTooltip, TTM_TRACKACTIVATE, TRUE, (LPARAM)&m_ToolTip);
                 }
-                else{
+                else {
                     ::SendMessage(m_hwndTooltip, TTM_SETMAXTIPWIDTH, 0, pHover->GetToolTipWidth());
                     ::SendMessage(m_hwndTooltip, TTM_SETTOOLINFO, 0, (LPARAM)&m_ToolTip);
                     ::SendMessage(m_hwndTooltip, TTM_TRACKACTIVATE, TRUE, (LPARAM)&m_ToolTip);
@@ -1222,12 +1301,19 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
             }
             //修改在CListElementUI 有提示 子项无提示下无法跟随移动！（按理说不应该移动的）
             ::SendMessage(m_hwndTooltip, TTM_TRACKPOSITION, 0, (LPARAM)(DWORD)MAKELONG(pt.x, pt.y));
+#endif
     }
         return true;
     case WM_MOUSELEAVE:
         {
             if( m_pRoot == NULL ) break;
-            if( m_hwndTooltip != NULL ) ::SendMessage(m_hwndTooltip, TTM_TRACKACTIVATE, FALSE, (LPARAM) &m_ToolTip);
+#if USE_CUSTOM_TOOLTIP
+            if (tooltip_enabled_ && tooltip_) {
+                tooltip_->HideTip();
+            }
+#else
+            if (m_hwndTooltip != NULL) ::SendMessage(m_hwndTooltip, TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_ToolTip);
+#endif
             if( m_bMouseTracking ) {
                 POINT pt = { 0 };
                 RECT rcWnd = { 0 };
@@ -1256,7 +1342,11 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
                 tme.cbSize = sizeof(TRACKMOUSEEVENT);
                 tme.dwFlags = TME_HOVER | TME_LEAVE;
                 tme.hwndTrack = m_hWndPaint;
+#if USE_CUSTOM_TOOLTIP
+                tme.dwHoverTime = tooltip_ == nullptr ? m_iHoverTime : (DWORD) tooltip_->GetDelayTime();
+#else
                 tme.dwHoverTime = m_hwndTooltip == NULL ? m_iHoverTime : (DWORD) ::SendMessage(m_hwndTooltip, TTM_GETDELAYTIME, TTDT_INITIAL, 0L);
+#endif
                 _TrackMouseEvent(&tme);
                 m_bMouseTracking = true;
             }
@@ -1287,7 +1377,13 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
 
                     m_pEventHover->Event(event);
                     m_pEventHover = NULL;
-                    if( m_hwndTooltip != NULL ) ::SendMessage(m_hwndTooltip, TTM_TRACKACTIVATE, FALSE, (LPARAM) &m_ToolTip);
+#if USE_CUSTOM_TOOLTIP
+                    if (tooltip_enabled_ && tooltip_) {
+                        tooltip_->HideTip();
+                    }
+#else
+                    if (m_hwndTooltip != NULL) ::SendMessage(m_hwndTooltip, TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_ToolTip);
+#endif
                 }
                 if( pNewHover != m_pEventHover && pNewHover != NULL ) {
                     event.Type = UIEVENT_MOUSEENTER;
