@@ -7,7 +7,9 @@
 
 #include "SkView.h"
 #include "SkCanvas.h"
+#if !VIEWS_NOT_USE_SKDOM
 #include "SkDOM.h"
+#endif
 
 static inline uint32_t SkSetClearShift(uint32_t bits, bool cond, unsigned shift) {
     SkASSERT((int)cond == 0 || (int)cond == 1);
@@ -628,6 +630,7 @@ bool SkView::globalToLocal(SkScalar x, SkScalar y, SkPoint* local) const {
 /*    Even if the subclass overrides onInflate, they should always be
     sure to call the inherited method, so that we get called.
 */
+#if !VIEWS_NOT_USE_SKDOM
 void SkView::onInflate(const SkDOM& dom, const SkDOM::Node* node) {
     SkScalar x, y;
 
@@ -663,6 +666,7 @@ void SkView::onInflate(const SkDOM& dom, const SkDOM::Node* node) {
 void SkView::inflate(const SkDOM& dom, const SkDOM::Node* node) {
     this->onInflate(dom, node);
 }
+#endif
 
 //////////////////////////////////////////////////////////////////
 

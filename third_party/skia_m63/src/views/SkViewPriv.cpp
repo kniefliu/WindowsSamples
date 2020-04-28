@@ -4,8 +4,9 @@
  * Use of this source code is governed by a BSD-style license that can be
  * found in the LICENSE file.
  */
-
+#if !VIEWS_NOT_USE_SKDOM
 #include "SkDOM.h"
+#endif
 #include "SkViewPriv.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -16,6 +17,7 @@ void SkView::Artist::draw(SkView* view, SkCanvas* canvas)
     this->onDraw(view, canvas);
 }
 
+#if !VIEWS_NOT_USE_SKDOM
 void SkView::Artist::inflate(const SkDOM& dom, const SkDOM::Node* node)
 {
     SkASSERT(node);
@@ -26,6 +28,7 @@ void SkView::Artist::onInflate(const SkDOM&, const SkDOM::Node*)
 {
     // subclass should override this as needed
 }
+#endif
 
 SkView::Artist* SkView::getArtist() const
 {
@@ -62,6 +65,7 @@ void SkView::Layout::layoutChildren(SkView* parent)
         this->onLayoutChildren(parent);
 }
 
+#if !VIEWS_NOT_USE_SKDOM
 void SkView::Layout::inflate(const SkDOM& dom, const SkDOM::Node* node)
 {
     SkASSERT(node);
@@ -72,6 +76,7 @@ void SkView::Layout::onInflate(const SkDOM&, const SkDOM::Node*)
 {
     // subclass should override this as needed
 }
+#endif
 
 SkView::Layout* SkView::getLayout() const
 {

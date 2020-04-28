@@ -870,6 +870,7 @@ component("skia") {
 if (is_component_build && !skia_enable_tools && is_win) {
   executable("HelloWorld") {
     defines = [ "VIEWS_NOT_IN_STATIC_LIB=1" ]
+    defines += [ "VIEWS_NOT_USE_SKDOM=1" ]
     configs += [ ":skia_private" ]
     include_dirs = [ "include/views" ]
     sources = [
