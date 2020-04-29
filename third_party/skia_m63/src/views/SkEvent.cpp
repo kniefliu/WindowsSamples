@@ -5,8 +5,9 @@
  * found in the LICENSE file.
  */
 
-
+#if !VIEWS_NOT_USE_SKDOM
 #include "SkDOM.h"
+#endif
 #include "SkEvent.h"
 
 void SkEvent::initialize(const char* type, size_t typeLen,
@@ -121,6 +122,7 @@ void SkEvent::setType(const SkString& type)
 
 #include "SkParse.h"
 
+#if !VIEWS_NOT_USE_SKDOM
 void SkEvent::inflate(const SkDOM& dom, const SkDOM::Node* node)
 {
     const char* name = dom.findAttr(node, "type");
@@ -172,6 +174,7 @@ void SkEvent::inflate(const SkDOM& dom, const SkDOM::Node* node)
 #endif
     }
 }
+#endif
 
 #ifdef SK_DEBUG
 

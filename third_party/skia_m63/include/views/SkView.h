@@ -261,10 +261,14 @@ public:
 
 
         void draw(SkView*, SkCanvas*);
+#if !VIEWS_NOT_USE_SKDOM
         void inflate(const SkDOM&, const SkDOMNode*);
+#endif
     protected:
         virtual void onDraw(SkView*, SkCanvas*) = 0;
+#if !VIEWS_NOT_USE_SKDOM
         virtual void onInflate(const SkDOM&, const SkDOMNode*);
+#endif
     private:
         typedef SkRefCnt INHERITED;
     };
@@ -289,10 +293,14 @@ public:
 
 
         void layoutChildren(SkView* parent);
+#if !VIEWS_NOT_USE_SKDOM
         void inflate(const SkDOM&, const SkDOMNode*);
+#endif
     protected:
         virtual void onLayoutChildren(SkView* parent) = 0;
+#if !VIEWS_NOT_USE_SKDOM
         virtual void onInflate(const SkDOM&, const SkDOMNode*);
+#endif
     private:
         typedef SkRefCnt INHERITED;
     };
@@ -312,7 +320,9 @@ public:
 
     /** Call this to initialize this view based on the specified XML node
     */
+#if !VIEWS_NOT_USE_SKDOM
     void    inflate(const SkDOM& dom, const SkDOMNode* node);
+#endif
 
     SkDEBUGCODE(void dump(bool recurse) const;)
 
@@ -350,7 +360,9 @@ protected:
     */
     virtual bool    onClick(Click*);
     /** Override this to initialize your subclass from the XML node. Be sure to call the inherited version too */
+#if !VIEWS_NOT_USE_SKDOM
     virtual void    onInflate(const SkDOM& dom, const SkDOMNode* node);
+#endif
     /** Override this if you want to perform post initialization work based on the ID dictionary built
         during XML parsing. Be sure to call the inherited version too.
     */

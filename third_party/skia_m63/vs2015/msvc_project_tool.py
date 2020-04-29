@@ -126,6 +126,13 @@ def change_vcxproj_xml(src_xml_fname, dest_xml_fname):
                 outdir_node.appendChild(doc.createTextNode('$(SolutionDir)$(Platform)\\$(Configuration)\\'))
                 has_outdir = True
                 break
+          for ipropertygroup_child_node in ipropertygroup_child_nodes:
+            if ipropertygroup_child_node.nodeType == ipropertygroup_child_node.ELEMENT_NODE:
+              print("\t\t\t ipropertygroup node = %s" %ipropertygroup_child_node.nodeName)
+              if ipropertygroup_child_node.nodeName == 'TargetPath':
+                targetpath_node = ipropertygroup_child_node
+                propertygroup_node.removeChild(targetpath_node)
+                break
           if has_outdir:
             cl_elem = doc.createElement('IntDir')
             cl_elem.appendChild(doc.createTextNode('$(Platform)_$(Configuration)\\$(ProjectName)\\'))
