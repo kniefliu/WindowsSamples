@@ -130,7 +130,7 @@ ATOM ANGLEGLContext::gWC = 0;
 enum class IsWine { kUnknown, kNo, kYes };
 
 static IsWine is_wine() {
-    HMODULE ntdll = GetModuleHandle("ntdll.dll");
+    HMODULE ntdll = GetModuleHandleA("ntdll.dll");
     if (!ntdll) {
         SkDebugf("No ntdll.dll on Windows?!\n");
         return IsWine::kUnknown;
