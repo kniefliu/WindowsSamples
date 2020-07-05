@@ -3,18 +3,8 @@
 
 #include "qui/core/qui_prerequisites.h"
 #include "qui/core/qui_rect.h"
+#include "qui/core/qui_window_types.h"
 
-// platform related 
-typedef void * QuiWindowHandle;
-typedef uint32_t QuiWindowStyle;
-typedef uint32_t QuiWindowExStyle;
-typedef uint32_t QuiWindowClassStyle;
-typedef uint32_t QuiWindowMessageID;
-typedef void * QuiWindowWParam;
-typedef void * QuiWindowLParam;
-typedef void * QuiWindowLResult;
-typedef uint32_t QuiWindowIconID;
-#define QuiNativeWindow_USEDEFAULT       ((int)0x80000000)
 
 class QuiWindowPrivate;
 class QUI_EXPORT QuiWindow {
@@ -30,8 +20,8 @@ public:
         QuiWindowExStyle window_ex_style, const QuiRect& area);
     QuiWindowHandle Create(QuiWindowHandle parent, const wchar_t* window_name, QuiWindowStyle window_style,
         QuiWindowExStyle window_ex_style,
-        int x = QuiNativeWindow_USEDEFAULT, int y = QuiNativeWindow_USEDEFAULT, 
-        int w = QuiNativeWindow_USEDEFAULT, int h = QuiNativeWindow_USEDEFAULT);
+        int x = QuiCreateWindow_USEDEFAULT, int y = QuiCreateWindow_USEDEFAULT,
+        int w = QuiCreateWindow_USEDEFAULT, int h = QuiCreateWindow_USEDEFAULT);
     QuiWindowHandle CreateQuiWindow(QuiWindowHandle parent, const wchar_t* window_name, QuiWindowStyle window_style = 0,
         QuiWindowExStyle dwExStyle = 0);
 

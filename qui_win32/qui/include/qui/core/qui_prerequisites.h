@@ -8,6 +8,8 @@
 
 // version
 #include "qui/core/qui_version.h"
+// types
+#include "qui/core/qui_types.h"
 
 // Pre-declare classes
 // Allows use of pointers in header files without including individual .h

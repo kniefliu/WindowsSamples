@@ -139,6 +139,9 @@ if(OS_WINDOWS)
   list(APPEND QUI_COMPILER_DEFINES_RELEASE
     NDEBUG _NDEBUG                    # Not a debug build
     )
+  list(APPEND QUI_COMPILER_DEFINES_DEBUG
+    QUI_DEBUG                    # A debug build
+    )
 
   # Standard libraries.
   set(QUI_STANDARD_LIBS
