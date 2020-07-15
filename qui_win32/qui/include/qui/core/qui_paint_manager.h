@@ -8,6 +8,8 @@
 #include "qui/core/qui_size.h"
 #include "qui/core/qui_point.h"
 #include "qui/core/qui_rect.h"
+#include "qui/core/qui_canvas.h"
+#include "qui/core/qui_bitmap.h"
 
 class QuiControl;
 class QuiControlNameHashFilter;
@@ -46,6 +48,8 @@ private:
     QuiString name_;
     QuiWindowHandle paint_wnd_;
     QuiCanvas* wnd_canvas_;
+    QuiCanvas* mem_canvas_;
+    QuiBitmap* mem_bitmap_;
     //
     QuiControl* root_;
     // 

@@ -7,6 +7,8 @@
 QuiPaintManager::QuiPaintManager()
     : paint_wnd_(nullptr)
     , wnd_canvas_(nullptr)
+    , mem_canvas_(nullptr)
+    , mem_bitmap_(nullptr)
     , root_(nullptr)
     , first_layout_(true)
     , focus_needed_(false)
@@ -23,7 +25,15 @@ QuiPaintManager::QuiPaintManager()
 }
 QuiPaintManager::~QuiPaintManager()
 {
-
+    if (wnd_canvas_) {
+        delete wnd_canvas_;
+    }
+    if (mem_canvas_) {
+        delete mem_canvas_;
+    }
+    if (mem_bitmap_) {
+        delete mem_bitmap_;
+    }
 }
 
 void QuiPaintManager::Init(QuiWindowHandle hwnd, const wchar_t * manager_name/* = nullptr*/)
@@ -181,8 +191,27 @@ bool QuiPaintManager::MessageHandler(QuiWindowMessageID message, QuiWindowWParam
         // Begin Windows paint
         PAINTSTRUCT ps = { 0 };
         ::BeginPaint(hwnd, &ps);
-        if (false/*offscreen*/) {
+        if (true/*offscreen*/) {
+            QuiRect offscreen_area = Win32RECTToQuiRect(client_area);
+            if (mem_bitmap_ && (!(offscreen_area.Width() == mem_bitmap_->GetWidth() && offscreen_area.Height() == mem_bitmap_->GetHeight()))) {
+                delete mem_bitmap_;
+                mem_bitmap_ = nullptr;
+                delete mem_canvas_;
+                mem_canvas_ = nullptr;
+            }
+            if (!mem_bitmap_) {
+                mem_bitmap_ = QuiBitmap::MakeGDIBitmap(offscreen_area.Width(), offscreen_area.Height(), kRGB8888_BitmapColor, paint_wnd_);
+                mem_canvas_ = QuiCanvas::MakeRaster(mem_bitmap_);
+            }
+            QuiASSERT(mem_canvas_);
+            mem_bitmap_->BeginDraw();
+            QuiRect dirty_area = { paint_area.left, paint_area.top, paint_area.right, paint_area.bottom };
+            root_->Paint(*mem_canvas_, dirty_area);
 
+            QuiRect src = { 0, 0, offscreen_area.Width(), offscreen_area.Height() };
+            QuiRect dest = src;
+            wnd_canvas_->DrawBitmap(mem_bitmap_, src, dest);
+            mem_bitmap_->EndDraw();
         }
         else {
             // A standard paint job
