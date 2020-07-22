@@ -25,10 +25,6 @@ macro(PRINT_QUI_CONFIG)
 
   message(STATUS "Binary distribution root:     ${_QUI_ROOT}")
 
-  if(OS_WINDOWS)
-    message(STATUS "Visual Studio ATL support:    ${USE_ATL}")
-  endif()
-
   message(STATUS "QUI sandbox:                  ${USE_SANDBOX}")
 
   set(_libraries ${QUI_STANDARD_LIBS})
@@ -68,17 +64,8 @@ endmacro()
 
 # Determine the target output directory based on platform and generator.
 macro(SET_QUI_TARGET_OUT_DIR)
-  if(GEN_NINJA OR GEN_MAKEFILES)
-    # By default Ninja and Make builds don't create a subdirectory named after
-    # the configuration.
-    set(QUI_TARGET_OUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}")
-
-    # Output binaries (executables, libraries) to the correct directory.
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${QUI_TARGET_OUT_DIR})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${QUI_TARGET_OUT_DIR})
-  else()
-    set(QUI_TARGET_OUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIGURATION>")
-  endif()
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+  set(QUI_TARGET_OUT_DIR "${CMAKE_BINARY_DIR}/bin/$<CONFIGURATION>")
 endmacro()
 
 # Copy a list of files from one directory to another. Relative files paths are maintained.

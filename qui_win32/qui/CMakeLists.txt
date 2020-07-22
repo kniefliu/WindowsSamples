@@ -84,5 +84,5 @@ endif(MSVC)
 # Remove the default "lib" prefix from the resulting library.
 set_target_properties(${QUI_TARGET} PROPERTIES PREFIX "")
 
-COPY_FILES("${QUI_TARGET}" "${QUI_BINARY_FILES}" "${QUI_TARGET_OUT_DIR}" "${QUI_BINARY_DIR}")
+# COPY_FILES("${QUI_TARGET}" "${QUI_BINARY_FILES}" "${QUI_TARGET_OUT_DIR}" "${QUI_BINARY_DIR}")
 

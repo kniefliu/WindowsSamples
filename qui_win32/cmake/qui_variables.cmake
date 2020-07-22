@@ -171,36 +171,4 @@ if(OS_WINDOWS)
     qui.pak    
     )
 
-  # Configure use of ATL.
-  option(USE_ATL "Enable or disable use of ATL." ON)
-  if(USE_ATL)
-    # Locate the atlmfc directory if it exists. It may be at any depth inside
-    # the VC directory. The cl.exe path returned by CMAKE_CXX_COMPILER may also
-    # be at different depths depending on the toolchain version
-    # (e.g. "VC/bin/cl.exe", "VC/bin/amd64_x86/cl.exe",
-    # "VC/Tools/MSVC/14.10.25017/bin/HostX86/x86/cl.exe", etc).
-    set(HAS_ATLMFC 0)
-    get_filename_component(VC_DIR ${CMAKE_CXX_COMPILER} DIRECTORY)
-    get_filename_component(VC_DIR_NAME ${VC_DIR} NAME)
-    while(NOT ${VC_DIR_NAME} STREQUAL "VC")
-      get_filename_component(VC_DIR ${VC_DIR} DIRECTORY)
-      if(IS_DIRECTORY "${VC_DIR}/atlmfc")
-        set(HAS_ATLMFC 1)
-        break()
-      endif()
-      get_filename_component(VC_DIR_NAME ${VC_DIR} NAME)
-    endwhile()
-
-    # Determine if the Visual Studio install supports ATL.
-    if(NOT HAS_ATLMFC)
-      message(WARNING "ATL is not supported by your VC installation.")
-      set(USE_ATL OFF)
-    endif()
-  endif()
-
-  if(USE_ATL)
-    list(APPEND QUI_COMPILER_DEFINES
-      QUI_USE_ATL   # Used by apps to test if ATL support is enabled
-      )
-  endif()
 endif()
