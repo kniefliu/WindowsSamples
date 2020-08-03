@@ -289,6 +289,13 @@ public:
                                                             sk_sp<SkColorSpace> colorSpace,
                                                             const SkSurfaceProps* surfaceProps);
 
+    static sk_sp<SkSurface> MakeFromD3D11Texture2D(GrContext* context,
+                                                   void* d3d11Texture2D,
+                                                   GrSurfaceOrigin origin,
+                                                   sk_sp<SkColorSpace>
+                                                           colorSpace,
+                                                   const SkSurfaceProps* surfaceProps = nullptr);
+
 #if defined(SK_BUILD_FOR_ANDROID) && __ANDROID_API__ >= 26
     /** Private.
         Creates SkSurface from Android hardware buffer.

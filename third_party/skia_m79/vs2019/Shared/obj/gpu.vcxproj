@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../..;../../../third_party/externals/angle2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /utf-8 /GR- %(AdditionalOptions)</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -373,6 +373,7 @@
     <ClInclude Include="../../../include/atlastext/SkAtlasTextFont.h" />
     <ClInclude Include="../../../include/atlastext/SkAtlasTextRenderer.h" />
     <ClInclude Include="../../../include/atlastext/SkAtlasTextTarget.h" />
+    <ClInclude Include="..\..\..\src\gpu\GrD3DTextureUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../../src/gpu/GrAuditTrail.cpp" />
@@ -647,6 +648,7 @@
     <ClCompile Include="../../../src/atlastext/SkAtlasTextContext.cpp" />
     <ClCompile Include="../../../src/atlastext/SkAtlasTextTarget.cpp" />
     <ClCompile Include="../../../src/atlastext/SkInternalAtlasTextContext.cpp" />
+    <ClCompile Include="..\..\..\src\gpu\GrD3DTextureUtils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />

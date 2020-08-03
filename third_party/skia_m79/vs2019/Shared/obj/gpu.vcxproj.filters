@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="include\gpu">
       <UniqueIdentifier>{CBE1FA0F-8207-8EBF-1A1D-3A165834599A}</UniqueIdentifier>
@@ -1037,6 +1038,9 @@
     <ClInclude Include="../../../include/atlastext/SkAtlasTextTarget.h">
       <Filter>include\atlastext</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\gpu\GrD3DTextureUtils.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../../src/gpu/GrAuditTrail.cpp">
@@ -1854,6 +1858,9 @@
     </ClCompile>
     <ClCompile Include="../../../src/atlastext/SkInternalAtlasTextContext.cpp">
       <Filter>src\atlastext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\gpu\GrD3DTextureUtils.cpp">
+      <Filter>src\gpu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

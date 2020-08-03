@@ -51,7 +51,7 @@
     <Link />
     <Link>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/WHOLEARCHIVE:gpu /WHOLEARCHIVE:pdf /WHOLEARCHIVE:skcms /WHOLEARCHIVE:avx /WHOLEARCHIVE:fontmgr_win /WHOLEARCHIVE:fontmgr_win_gdi /WHOLEARCHIVE:gif /WHOLEARCHIVE:heif /WHOLEARCHIVE:hsw /WHOLEARCHIVE:jpeg /WHOLEARCHIVE:png /WHOLEARCHIVE:sse41 /WHOLEARCHIVE:sse42 /WHOLEARCHIVE:ssse3 /WHOLEARCHIVE:webp /WHOLEARCHIVE:xml %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;pathkit.lib;pdf.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;expat.lib;libjpeg.lib;libpng.lib;libwebp.lib;libwebp_sse41.lib;zlib.lib;zlib_x86.lib;OpenGL32.lib;FontSub.lib;Usp10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">avx.lib;fontmgr_win.lib;fontmgr_win_gdi.lib;gif.lib;gpu.lib;heif.lib;hsw.lib;jpeg.lib;pathkit.lib;pdf.lib;png.lib;skcms.lib;sse41.lib;sse42.lib;ssse3.lib;webp.lib;xml.lib;expat.lib;libjpeg.lib;libpng.lib;libwebp.lib;libwebp_sse41.lib;zlib.lib;zlib_x86.lib;OpenGL32.lib;FontSub.lib;Usp10.lib;libEGL.lib;libGLESv2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

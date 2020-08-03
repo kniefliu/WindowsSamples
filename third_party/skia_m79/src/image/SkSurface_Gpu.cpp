@@ -26,6 +26,8 @@
 #include "src/image/SkSurface_Base.h"
 #include "src/image/SkSurface_Gpu.h"
 
+#include "src/gpu/GrD3DTextureUtils.h"
+
 #if SK_SUPPORT_GPU
 
 SkSurface_Gpu::SkSurface_Gpu(sk_sp<SkGpuDevice> device)
@@ -737,5 +739,33 @@ sk_sp<SkSurface> SkSurface::MakeFromAHardwareBuffer(GrContext* context,
     }
 }
 #endif
+
+sk_sp<SkSurface> SkSurface::MakeFromD3D11Texture2D(GrContext* context,
+                                                   void* d3d11Texture2D,
+                                                   GrSurfaceOrigin origin,
+                                                   sk_sp<SkColorSpace>
+                                                           colorSpace,
+                                                   const SkSurfaceProps* surfaceProps) {
+    GrD3DTextureUtils::DeleteImageProc deleteImageProc = nullptr;
+    GrD3DTextureUtils::DeleteImageCtx deleteImageCtx = nullptr;
+
+    SkColorType colorType = kUnknown_SkColorType;
+
+    GrBackendTexture backendTexture = GrD3DTextureUtils::MakeBackendTexture(
+            context, d3d11Texture2D, &deleteImageProc, &deleteImageCtx, colorType);
+    if (!backendTexture.isValid()) {
+        return nullptr;
+    }
+
+    sk_sp<SkSurface> surface = SkSurface::MakeFromBackendTexture(
+            context, backendTexture, origin, 0, colorType, std::move(colorSpace), surfaceProps,
+            deleteImageProc, deleteImageCtx);
+
+    if (!surface) {
+        SkASSERT(deleteImageProc);
+        deleteImageProc(deleteImageCtx);
+    }
+    return surface;
+}
 
 #endif

@@ -15,8 +15,14 @@
 #include "tools/sk_app/GLWindowContext.h"
 #include "tools/sk_app/win/WindowContextFactory_win.h"
 
+#include <d3d11.h>
+
 using sk_app::GLWindowContext;
 using sk_app::DisplayParams;
+
+ID3D11Texture2D* xx_pTexture = NULL;
+
+void* GetD3D11Texture() { return xx_pTexture; }
 
 namespace {
 
@@ -55,6 +61,50 @@ private:
 
     typedef GLWindowContext INHERITED;
 };
+
+ID3D11Device* g_pd3dDevice = nullptr;
+
+
+void* QueryDeviceObjectFromANGLE(EGLDisplay egl_display) {
+    intptr_t egl_device = 0;
+    intptr_t device = 0;
+
+    PFNEGLQUERYDISPLAYATTRIBEXTPROC QueryDisplayAttribEXT = nullptr;
+
+    {
+        QueryDisplayAttribEXT = reinterpret_cast<PFNEGLQUERYDISPLAYATTRIBEXTPROC>(
+            eglGetProcAddress("eglQueryDisplayAttribEXT"));
+
+        if (!QueryDisplayAttribEXT)
+            return nullptr;
+    }
+
+    PFNEGLQUERYDEVICEATTRIBEXTPROC QueryDeviceAttribEXT = nullptr;
+
+    {
+
+        QueryDeviceAttribEXT = reinterpret_cast<PFNEGLQUERYDEVICEATTRIBEXTPROC>(
+            eglGetProcAddress("eglQueryDeviceAttribEXT"));
+        if (!QueryDeviceAttribEXT)
+            return nullptr;
+    }
+
+    {
+        if (!QueryDisplayAttribEXT(egl_display, EGL_DEVICE_EXT, &egl_device))
+            return nullptr;
+    }
+    if (!egl_device)
+        return nullptr;
+
+    {
+        if (!QueryDeviceAttribEXT(reinterpret_cast<EGLDeviceEXT>(egl_device),
+            EGL_D3D11_DEVICE_ANGLE, &device)) {
+            return nullptr;
+        }
+    }
+
+    return reinterpret_cast<void*>(device);
+}
 
 ANGLEGLWindowContext_win::ANGLEGLWindowContext_win(HWND wnd, const DisplayParams& params)
         : INHERITED(params), fHWND(wnd) {
@@ -119,14 +169,15 @@ sk_sp<const GrGLInterface> ANGLEGLWindowContext_win::onInitializeContext() {
         return nullptr;
     }
 
-    sk_sp<const GrGLInterface> interface(GrGLMakeAssembledInterface(
+    sk_sp<const GrGLInterface> interface_gl(GrGLMakeAssembledInterface(
             nullptr,
             [](void* ctx, const char name[]) -> GrGLFuncPtr { return eglGetProcAddress(name); }));
-    if (interface) {
-        interface->fFunctions.fClearStencil(0);
-        interface->fFunctions.fClearColor(0, 0, 0, 0);
-        interface->fFunctions.fStencilMask(0xffffffff);
-        interface->fFunctions.fClear(GR_GL_STENCIL_BUFFER_BIT | GR_GL_COLOR_BUFFER_BIT);
+    if (interface_gl) {
+        interface_gl->fFunctions.fGetError();
+        interface_gl->fFunctions.fClearStencil(0);
+        interface_gl->fFunctions.fClearColor(0, 0, 0, 0);
+        interface_gl->fFunctions.fStencilMask(0xffffffff);
+        interface_gl->fFunctions.fClear(GR_GL_STENCIL_BUFFER_BIT | GR_GL_COLOR_BUFFER_BIT);
 
         // use DescribePixelFormat to get the stencil depth.
         int pixelFormat = GetPixelFormat(dc);
@@ -138,9 +189,19 @@ sk_sp<const GrGLInterface> ANGLEGLWindowContext_win::onInitializeContext() {
         GetClientRect(fHWND, &rect);
         fWidth = rect.right - rect.left;
         fHeight = rect.bottom - rect.top;
-        interface->fFunctions.fViewport(0, 0, fWidth, fHeight);
+        interface_gl->fFunctions.fViewport(0, 0, fWidth, fHeight);
     }
-    return interface;
+
+    if (!g_pd3dDevice) {
+        g_pd3dDevice = (ID3D11Device*)QueryDeviceObjectFromANGLE(fDisplay);
+        CD3D11_TEXTURE2D_DESC desc(DXGI_FORMAT_R8G8B8A8_UNORM, 100, 100, 1, 1,
+                                   D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET);
+        desc.SampleDesc.Count = 1;
+        desc.SampleDesc.Quality = 0;
+        g_pd3dDevice->CreateTexture2D(&desc, nullptr, &xx_pTexture);
+    }
+
+    return interface_gl;
 }
 
 void ANGLEGLWindowContext_win::onDestroyContext() {
