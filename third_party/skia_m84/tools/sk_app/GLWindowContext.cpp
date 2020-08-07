@@ -57,7 +57,11 @@ sk_sp<SkSurface> GLWindowContext::getBackbufferSurface() {
     if (nullptr == fSurface) {
         if (fContext) {
             GrGLint buffer;
+#ifdef SKIA_DLL
+            fBackendContext.get()->fFunctions.fGetIntegerv(GR_GL_FRAMEBUFFER_BINDING, &buffer);
+#else
             GR_GL_CALL(fBackendContext.get(), GetIntegerv(GR_GL_FRAMEBUFFER_BINDING, &buffer));
+#endif
 
             GrGLFramebufferInfo fbInfo;
             fbInfo.fFBOID = buffer;
