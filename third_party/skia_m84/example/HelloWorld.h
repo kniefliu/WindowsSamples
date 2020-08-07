@@ -12,6 +12,7 @@
 #include "tools/sk_app/Window.h"
 
 class SkCanvas;
+class SkSVGDOM;
 
 class HelloWorld : public sk_app::Application, sk_app::Window::Layer {
 public:
@@ -31,6 +32,10 @@ private:
     sk_app::Window::BackendType fBackendType;
 
     SkScalar fRotationAngle;
+
+#ifdef SK_BUILD_FOR_WIN
+    sk_sp<SkSVGDOM> fDom;
+#endif
 };
 
 #endif

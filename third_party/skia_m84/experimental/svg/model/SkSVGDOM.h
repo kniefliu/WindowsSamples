@@ -18,7 +18,7 @@ class SkDOM;
 class SkStream;
 class SkSVGNode;
 
-class SkSVGDOM : public SkRefCnt {
+class SK_API SkSVGDOM : public SkRefCnt {
 public:
     SkSVGDOM();
     ~SkSVGDOM() = default;
