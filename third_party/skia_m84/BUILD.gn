@@ -1147,6 +1147,32 @@ if (is_component_build && !skia_enable_tools && is_win) {
       "OpenGL32.lib",
     ]
   }
+  
+  executable("HelloD3D11Texture") {
+    configs += [ ":skia_private" ]
+    include_dirs = [ "include/views" ]
+    libs = [ ]
+    
+    sources = [ 
+      "demo/HelloD3D11Texture.cpp",  
+      "demo/HelloD3D11Texture.h"  
+    ]
+    
+    deps = [
+      ":sk_app",
+      ":skia",
+    ]
+    
+    libs += [
+      "Gdi32.lib",
+      "Usp10.lib",
+      "FontSub.lib",
+      "Ole32.lib",
+      "OleAut32.lib",
+      "User32.lib",
+      "OpenGL32.lib",
+    ]
+  }
 }
 
 # DebugCanvas used in experimental/wasm-skp-debugger
