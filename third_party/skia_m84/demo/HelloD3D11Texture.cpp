@@ -14,7 +14,7 @@
 #include "include/effects/SkGradientShader.h"
 
 
-using namespace sk_app;
+using namespace skwin_app;
 
 
 Application* Application::Create(int argc, char** argv, void* platformData) {

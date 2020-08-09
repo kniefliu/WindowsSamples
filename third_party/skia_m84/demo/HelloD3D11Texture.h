@@ -8,12 +8,12 @@
 #ifndef HelloWorld_DEFINED
 #define HelloWorld_DEFINED
 
-#include "tools/sk_app/Application.h"
-#include "tools/sk_app/Window.h"
+#include "demo/skwin_app/Application.h"
+#include "demo/skwin_app/Window.h"
 
 class SkCanvas;
 
-class HelloD3D11Texture : public sk_app::Application, sk_app::Window::Layer {
+class HelloD3D11Texture : public skwin_app::Application, skwin_app::Window::Layer {
 public:
     HelloD3D11Texture(int argc, char** argv, void* platformData);
     ~HelloD3D11Texture() override;
@@ -27,8 +27,8 @@ public:
 private:
     void updateTitle();
 
-    sk_app::Window* fWindow;
-    sk_app::Window::BackendType fBackendType;
+    skwin_app::Window* fWindow;
+    skwin_app::Window::BackendType fBackendType;
 
     SkScalar fRotationAngle;
 };

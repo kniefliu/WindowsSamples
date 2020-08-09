@@ -1149,7 +1149,10 @@ if (is_component_build && !skia_enable_tools && is_win) {
   }
   
   executable("HelloD3D11Texture") {
+    defines = [ "VIEWS_NOT_IN_STATIC_LIB=1" ]
     configs += [ ":skia_private" ]
+    configs += [ ":skia_public" ]
+
     include_dirs = [ "include/views" ]
     libs = [ ]
     
@@ -1157,11 +1160,39 @@ if (is_component_build && !skia_enable_tools && is_win) {
       "demo/HelloD3D11Texture.cpp",  
       "demo/HelloD3D11Texture.h"  
     ]
+    sources += [
+      "demo/skwin_app/Application.h",
+      "demo/skwin_app/CommandSet.cpp",
+      "demo/skwin_app/CommandSet.h",
+      "demo/skwin_app/DisplayParams.h",
+      "demo/skwin_app/GLWindowContext.cpp",
+      "demo/skwin_app/GLWindowContext.h",
+      "demo/skwin_app/RasterWindowContext.h",
+      "demo/skwin_app/Window.cpp",
+      "demo/skwin_app/Window.h",
+      "demo/skwin_app/WindowContext.h",
+      "demo/skwin_app/SkSurfaceHelper.h",
+    ]    
     
-    deps = [
-      ":sk_app",
-      ":skia",
-    ]
+    if (is_win) {
+      sources += [
+        "demo/skwin_app/win/GLWindowContext_win.cpp",
+        "demo/skwin_app/win/RasterWindowContext_win.cpp",
+        "demo/skwin_app/win/Window_win.cpp",
+        "demo/skwin_app/win/Window_win.h",
+        "demo/skwin_app/win/main_win.cpp",
+        "demo/skwin_app/win/WindowContextFactory_win.h",
+        "demo/skwin_app/win/SkSurfaceHelper_win.cpp",
+      ]
+      if (skia_use_angle) {
+        sources += [ "demo/skwin_app/win/ANGLEWindowContext_win.cpp" ]
+      }
+    }
+    
+    deps = [ ":skia" ]
+    if (skia_use_angle) {
+      deps += [ "//third_party/angle2" ]
+    }
     
     libs += [
       "Gdi32.lib",
