@@ -59,24 +59,38 @@ void HelloD3D11Texture::updateTitle() {
     fWindow->setTitle(title.c_str());
 }
 
+void HelloD3D11Texture::onResize(int width, int height) {
+    fGpuSurface = nullptr;
+    fD3D11TexureSurface = nullptr;
+    fD3D11Texture = nullptr;
+    
+
+    if (width == 0 || height == 0) {
+
+    } else {
+        SkImageInfo image_info = SkImageInfo::MakeN32(256, 256, SkAlphaType::kOpaque_SkAlphaType);
+        if (fWindow->getGrContext()) {
+            fGpuSurface = SkSurface::MakeRenderTarget(fWindow->getGrContext(), SkBudgeted::kNo,
+                                                      image_info);
+        } else {
+            fGpuSurface = nullptr;
+        }
+
+        fD3D11TextureNeedToCreate = true;
+        // paint error if texture created here.
+        //fD3D11TexureSurface = makeD3D11TextureSurface(fD3D11TextureWidth, fD3D11TextureHeight);
+    }
+}
+
 void HelloD3D11Texture::onBackendCreated() {
     this->updateTitle();
     fWindow->show();
     fWindow->inval();
-    fD3D11TexureSurface = makeD3D11TextureSurface(100, 100);
 
+    // cpu surface
     {
         SkImageInfo image_info = SkImageInfo::MakeN32(128, 128, SkAlphaType::kOpaque_SkAlphaType);
         fCpuSurface = SkSurface::MakeRaster(image_info);
-    }
-
-    SkImageInfo image_info =
-                SkImageInfo::MakeN32(256, 256, SkAlphaType::kOpaque_SkAlphaType);
-    if (fWindow->getGrContext()) {
-        fGpuSurface =
-                SkSurface::MakeRenderTarget(fWindow->getGrContext(), SkBudgeted::kNo, image_info);
-    } else {
-        fGpuSurface = nullptr;
     }
 }
 
@@ -86,14 +100,11 @@ void HelloD3D11Texture::onPaint(SkSurface* surface) {
     // Clear background
     canvas->clear(SK_ColorWHITE);
 
-    if (fD3D11TexureSurface) {
-        SkPaint paint;
-        fD3D11TexureSurface->getCanvas()->clear(SK_ColorBLUE);
-        fD3D11TexureSurface->draw(canvas, 0, 0, &paint);
-    }
     if (fCpuSurface) {
+        fCpuSurface->getCanvas()->clear(SK_ColorWHITE);
         SkPaint paint;
-        //paint.setAlpha(128);
+        // paint.setAlpha(128);
+        paint.setAntiAlias(true);
         SkIRect cpuRect = fCpuSurface->imageInfo().bounds();
         {
             cpuRect.inset(2, 2);
@@ -108,78 +119,61 @@ void HelloD3D11Texture::onPaint(SkSurface* surface) {
         cpuFont.setSize(40);
         fCpuSurface->getCanvas()->drawSimpleText(cpuText, strlen(cpuText), SkTextEncoding::kUTF8,
                                                  10, 50, cpuFont, paint);
-        fCpuSurface->draw(canvas, 100, 0, &paint);
+        fCpuSurface->draw(canvas, 300, 300, &paint);
     }
-    //if (!fGpuSurface) {
-    //    SkImageInfo image_info = SkImageInfo::MakeN32(256, 256, SkAlphaType::kOpaque_SkAlphaType);
-    //    if (canvas->getGrContext()) {
-    //        fGpuSurface = SkSurface::MakeRenderTarget(canvas->getGrContext(), SkBudgeted::kNo,
-    //                                                  image_info);
-    //    }
-    //}
-    if (fGpuSurface) {
-        SkPaint paint;
-        //paint.setAlpha(128);
-        SkIRect gpuRect = fGpuSurface->imageInfo().bounds();
-        { 
-            gpuRect.inset(2, 2);
-            SkPaint gpuRectPaint;
-            gpuRectPaint.setStrokeWidth(2);
-            gpuRectPaint.setStyle(SkPaint::kStroke_Style);
-            gpuRectPaint.setColor(SK_ColorGRAY);
-            fGpuSurface->getCanvas()->drawIRect(gpuRect, gpuRectPaint); 
+
+    if (canvas->getGrContext()) {
+        if (fD3D11TextureNeedToCreate) {
+            fD3D11TexureSurface = makeD3D11TextureSurface(fD3D11TextureWidth, fD3D11TextureHeight);
+            fD3D11TextureNeedToCreate = false;
         }
-        char gpuText[] = "GPU";
-        SkFont gpuFont;
-        gpuFont.setSize(40);
-        fGpuSurface->getCanvas()->drawSimpleText(gpuText, strlen(gpuText), SkTextEncoding::kUTF8,
-                                                 10, 50, gpuFont, paint);
-        fGpuSurface->draw(canvas, 300, 0, &paint);
+        if (fD3D11TexureSurface) {
+            fD3D11TexureSurface->getCanvas()->clear(SK_ColorWHITE);
+            SkPaint paint;
+            paint.setAntiAlias(true);
+            // paint.setAlpha(128);
+            SkIRect texRect = fD3D11TexureSurface->imageInfo().bounds();
+            {
+                texRect.inset(2, 2);
+                SkPaint texRectPaint;
+                texRectPaint.setStrokeWidth(2);
+                texRectPaint.setStyle(SkPaint::kStroke_Style);
+                texRectPaint.setColor(SK_ColorGRAY);
+                fD3D11TexureSurface->getCanvas()->drawIRect(texRect, texRectPaint);
+            }
+            char texText[] = "D3D11Texture";
+            SkFont texFont;
+            texFont.setSize(40);
+            fD3D11TexureSurface->getCanvas()->drawSimpleText(
+                    texText, strlen(texText),
+                                                     SkTextEncoding::kUTF8, 2, 50, texFont, paint);
+            fD3D11TexureSurface->flush();
+            fD3D11TexureSurface->draw(canvas, 10, 10, &paint);
+        }
+        if (fGpuSurface) {
+            fGpuSurface->getCanvas()->clear(SK_ColorWHITE);
+            SkPaint paint;
+            // paint.setAlpha(128);
+            paint.setAntiAlias(true);
+            SkIRect gpuRect = fGpuSurface->imageInfo().bounds();
+            {
+                gpuRect.inset(2, 2);
+                SkPaint gpuRectPaint;
+                gpuRectPaint.setStrokeWidth(2);
+                gpuRectPaint.setStyle(SkPaint::kStroke_Style);
+                gpuRectPaint.setColor(SK_ColorGRAY);
+                fGpuSurface->getCanvas()->drawIRect(gpuRect, gpuRectPaint);
+            }
+            char gpuText[] = "GPU";
+            SkFont gpuFont;
+            gpuFont.setSize(40);
+            fGpuSurface->getCanvas()->drawSimpleText(gpuText, strlen(gpuText),
+                                                     SkTextEncoding::kUTF8, 10, 50, gpuFont, paint);
+            fGpuSurface->flush();
+            fGpuSurface->draw(canvas, 300, 10, &paint);
+        }
     }
     return;
-
-    SkPaint paint;
-    paint.setColor(SK_ColorRED);
-
-    // Draw a rectangle with red paint
-    SkRect rect = SkRect::MakeXYWH(10, 10, 128, 128);
-    canvas->drawRect(rect, paint);
-
-    // Set up a linear gradient and draw a circle
-    {
-        SkPoint linearPoints[] = { { 0, 0 }, { 300, 300 } };
-        SkColor linearColors[] = { SK_ColorGREEN, SK_ColorBLACK };
-        paint.setShader(SkGradientShader::MakeLinear(linearPoints, linearColors, nullptr, 2,
-                                                     SkTileMode::kMirror));
-        paint.setAntiAlias(true);
-
-        canvas->drawCircle(200, 200, 64, paint);
-
-        // Detach shader
-        paint.setShader(nullptr);
-    }
-
-    // Draw a message with a nice black paint
-    SkFont font;
-    font.setSubpixel(true);
-    font.setSize(20);
-    paint.setColor(SK_ColorBLACK);
-
-    canvas->save();
-    static const char message[] = "Hello D3D11Texture";
-
-    // Translate and rotate
-    canvas->translate(300, 300);
-    fRotationAngle += 0.2f;
-    if (fRotationAngle > 360) {
-        fRotationAngle -= 360;
-    }
-    canvas->rotate(fRotationAngle);
-
-    // Draw the text
-    canvas->drawSimpleText(message, strlen(message), SkTextEncoding::kUTF8, 0, 0, font, paint);
-
-    canvas->restore();
 }
 
 void HelloD3D11Texture::onIdle() {
@@ -203,12 +197,12 @@ bool HelloD3D11Texture::onChar(SkUnichar c, skui::ModifierKey modifiers) {
 }
 
 sk_sp<SkSurface> HelloD3D11Texture::makeD3D11TextureSurface(int w, int h) {
-    return nullptr;
+    //return nullptr;
     if (fWindow && fWindow->getGrGLInterface()) {
-        void * d3dTexture = fWindow->makeD3D11Texture2D(w, h);
-        if (d3dTexture) {
+        fD3D11Texture = fWindow->makeD3D11Texture2D(w, h);
+        if (fD3D11Texture) {
             return SkSurfaceHelper::MakeFromD3D11Texture2D(
-                    fWindow->getGrContext(), d3dTexture, w, h, kTopLeft_GrSurfaceOrigin,
+                    fWindow->getGrContext(), fD3D11Texture, w, h, kBottomLeft_GrSurfaceOrigin,
                     SkColorSpace::MakeSRGB(), nullptr, fWindow->getGrGLInterface());
         }
         return nullptr;

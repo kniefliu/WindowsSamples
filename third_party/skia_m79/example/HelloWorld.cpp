@@ -144,7 +144,6 @@ void HelloWorld::onPaint(SkSurface* surface) {
             canvas->flush();
         }
     }
-    return;
 
     SkPaint paint;
     paint.setColor(SK_ColorRED);
