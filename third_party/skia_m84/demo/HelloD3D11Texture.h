@@ -20,6 +20,7 @@ public:
 
     void onIdle() override;
 
+    void onResize(int width, int height) override;
     void onBackendCreated() override;
     void onPaint(SkSurface*) override;
     bool onChar(SkUnichar c, skui::ModifierKey modifiers) override;
@@ -36,6 +37,10 @@ private:
     sk_sp<SkSurface> fD3D11TexureSurface;
     sk_sp<SkSurface> fGpuSurface;
     sk_sp<SkSurface> fCpuSurface;
+    void* fD3D11Texture{nullptr};
+    int fD3D11TextureWidth{256};
+    int fD3D11TextureHeight{256};
+    bool fD3D11TextureNeedToCreate{true};
 };
 
 #endif
