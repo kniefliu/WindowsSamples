@@ -20,6 +20,7 @@ public:
 
     void onIdle() override;
 
+    void onResize(int width, int height) override;
     void onBackendCreated() override;
     void onPaint(SkSurface*) override;
     bool onChar(SkUnichar c, skui::ModifierKey modifiers) override;
@@ -31,6 +32,9 @@ private:
     sk_app::Window::BackendType fBackendType;
 
     SkScalar fRotationAngle;
+
+    sk_sp<SkSurface> fGpuSurface;
+    sk_sp<SkSurface> fCpuSurface;
 };
 
 #endif
