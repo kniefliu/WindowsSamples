@@ -144,6 +144,21 @@ GrContext* Window::getGrContext() const {
     return fWindowContext->getGrContext();
 }
 
+const GrGLInterface* Window::getGrGLInterface() const
+{
+    if (!fWindowContext) {
+        return nullptr;
+    }
+    return fWindowContext->getGrGLInterface();
+}
+
+void* Window::makeD3D11Texture2D(int w, int h) {
+    if (!fWindowContext) {
+        return nullptr;
+    }
+    return fWindowContext->makeD3D11Texture2D(w, h);
+}
+
 void Window::inval() {
     if (!fWindowContext) {
         return;

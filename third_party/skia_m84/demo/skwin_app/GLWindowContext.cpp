@@ -99,4 +99,9 @@ void GLWindowContext::setDisplayParams(const DisplayParams& params) {
     this->initializeContext();
 }
 
+const GrGLInterface* GLWindowContext::getGrGLInterface() const 
+{
+    return fBackendContext.get();
+}
+
 }   //namespace skwin_app

@@ -26,11 +26,16 @@ public:
 
 private:
     void updateTitle();
+    sk_sp<SkSurface> makeD3D11TextureSurface(int w, int h);
 
     skwin_app::Window* fWindow;
     skwin_app::Window::BackendType fBackendType;
 
     SkScalar fRotationAngle;
+
+    sk_sp<SkSurface> fD3D11TexureSurface;
+    sk_sp<SkSurface> fGpuSurface;
+    sk_sp<SkSurface> fCpuSurface;
 };
 
 #endif

@@ -13,6 +13,8 @@
 #include "include/core/SkSurface.h"
 #include "include/effects/SkGradientShader.h"
 
+#include "demo/skwin_app/SkSurfaceHelper.h"
+
 
 using namespace skwin_app;
 
@@ -61,6 +63,21 @@ void HelloD3D11Texture::onBackendCreated() {
     this->updateTitle();
     fWindow->show();
     fWindow->inval();
+    fD3D11TexureSurface = makeD3D11TextureSurface(100, 100);
+
+    {
+        SkImageInfo image_info = SkImageInfo::MakeN32(128, 128, SkAlphaType::kOpaque_SkAlphaType);
+        fCpuSurface = SkSurface::MakeRaster(image_info);
+    }
+
+    SkImageInfo image_info =
+                SkImageInfo::MakeN32(256, 256, SkAlphaType::kOpaque_SkAlphaType);
+    if (fWindow->getGrContext()) {
+        fGpuSurface =
+                SkSurface::MakeRenderTarget(fWindow->getGrContext(), SkBudgeted::kNo, image_info);
+    } else {
+        fGpuSurface = nullptr;
+    }
 }
 
 void HelloD3D11Texture::onPaint(SkSurface* surface) {
@@ -68,6 +85,58 @@ void HelloD3D11Texture::onPaint(SkSurface* surface) {
 
     // Clear background
     canvas->clear(SK_ColorWHITE);
+
+    if (fD3D11TexureSurface) {
+        SkPaint paint;
+        fD3D11TexureSurface->getCanvas()->clear(SK_ColorBLUE);
+        fD3D11TexureSurface->draw(canvas, 0, 0, &paint);
+    }
+    if (fCpuSurface) {
+        SkPaint paint;
+        //paint.setAlpha(128);
+        SkIRect cpuRect = fCpuSurface->imageInfo().bounds();
+        {
+            cpuRect.inset(2, 2);
+            SkPaint cpuRectPaint;
+            cpuRectPaint.setStrokeWidth(2);
+            cpuRectPaint.setStyle(SkPaint::kStroke_Style);
+            cpuRectPaint.setColor(SK_ColorGRAY);
+            fCpuSurface->getCanvas()->drawIRect(cpuRect, cpuRectPaint);
+        }
+        char cpuText[] = "CPU";
+        SkFont cpuFont;
+        cpuFont.setSize(40);
+        fCpuSurface->getCanvas()->drawSimpleText(cpuText, strlen(cpuText), SkTextEncoding::kUTF8,
+                                                 10, 50, cpuFont, paint);
+        fCpuSurface->draw(canvas, 100, 0, &paint);
+    }
+    //if (!fGpuSurface) {
+    //    SkImageInfo image_info = SkImageInfo::MakeN32(256, 256, SkAlphaType::kOpaque_SkAlphaType);
+    //    if (canvas->getGrContext()) {
+    //        fGpuSurface = SkSurface::MakeRenderTarget(canvas->getGrContext(), SkBudgeted::kNo,
+    //                                                  image_info);
+    //    }
+    //}
+    if (fGpuSurface) {
+        SkPaint paint;
+        //paint.setAlpha(128);
+        SkIRect gpuRect = fGpuSurface->imageInfo().bounds();
+        { 
+            gpuRect.inset(2, 2);
+            SkPaint gpuRectPaint;
+            gpuRectPaint.setStrokeWidth(2);
+            gpuRectPaint.setStyle(SkPaint::kStroke_Style);
+            gpuRectPaint.setColor(SK_ColorGRAY);
+            fGpuSurface->getCanvas()->drawIRect(gpuRect, gpuRectPaint); 
+        }
+        char gpuText[] = "GPU";
+        SkFont gpuFont;
+        gpuFont.setSize(40);
+        fGpuSurface->getCanvas()->drawSimpleText(gpuText, strlen(gpuText), SkTextEncoding::kUTF8,
+                                                 10, 50, gpuFont, paint);
+        fGpuSurface->draw(canvas, 300, 0, &paint);
+    }
+    return;
 
     SkPaint paint;
     paint.setColor(SK_ColorRED);
@@ -131,4 +200,18 @@ bool HelloD3D11Texture::onChar(SkUnichar c, skui::ModifierKey modifiers) {
         fWindow->attach(fBackendType);
     }
     return true;
+}
+
+sk_sp<SkSurface> HelloD3D11Texture::makeD3D11TextureSurface(int w, int h) {
+    return nullptr;
+    if (fWindow && fWindow->getGrGLInterface()) {
+        void * d3dTexture = fWindow->makeD3D11Texture2D(w, h);
+        if (d3dTexture) {
+            return SkSurfaceHelper::MakeFromD3D11Texture2D(
+                    fWindow->getGrContext(), d3dTexture, w, h, kTopLeft_GrSurfaceOrigin,
+                    SkColorSpace::MakeSRGB(), nullptr, fWindow->getGrGLInterface());
+        }
+        return nullptr;
+    }
+    return nullptr;
 }

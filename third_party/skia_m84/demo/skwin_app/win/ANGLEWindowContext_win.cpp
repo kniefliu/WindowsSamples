@@ -15,6 +15,8 @@
 #include "demo/skwin_app/GLWindowContext.h"
 #include "demo/skwin_app/win/WindowContextFactory_win.h"
 
+#include <d3d11.h>
+
 using skwin_app::GLWindowContext;
 using skwin_app::DisplayParams;
 
@@ -41,6 +43,8 @@ public:
     ANGLEGLWindowContext_win(HWND, const DisplayParams&);
     ~ANGLEGLWindowContext_win() override;
 
+    void* makeD3D11Texture2D(int w, int h) override;
+
 protected:
     void onSwapBuffers() override;
 
@@ -55,6 +59,42 @@ private:
 
     typedef GLWindowContext INHERITED;
 };
+
+void* QueryDeviceObjectFromANGLE(EGLDisplay egl_display) {
+    intptr_t egl_device = 0;
+    intptr_t device = 0;
+
+    PFNEGLQUERYDISPLAYATTRIBEXTPROC QueryDisplayAttribEXT = nullptr;
+
+    {
+        QueryDisplayAttribEXT = reinterpret_cast<PFNEGLQUERYDISPLAYATTRIBEXTPROC>(
+                eglGetProcAddress("eglQueryDisplayAttribEXT"));
+
+        if (!QueryDisplayAttribEXT) return nullptr;
+    }
+
+    PFNEGLQUERYDEVICEATTRIBEXTPROC QueryDeviceAttribEXT = nullptr;
+
+    {
+        QueryDeviceAttribEXT = reinterpret_cast<PFNEGLQUERYDEVICEATTRIBEXTPROC>(
+                eglGetProcAddress("eglQueryDeviceAttribEXT"));
+        if (!QueryDeviceAttribEXT) return nullptr;
+    }
+
+    {
+        if (!QueryDisplayAttribEXT(egl_display, EGL_DEVICE_EXT, &egl_device)) return nullptr;
+    }
+    if (!egl_device) return nullptr;
+
+    {
+        if (!QueryDeviceAttribEXT(reinterpret_cast<EGLDeviceEXT>(egl_device),
+                                  EGL_D3D11_DEVICE_ANGLE, &device)) {
+            return nullptr;
+        }
+    }
+
+    return reinterpret_cast<void*>(device);
+}
 
 ANGLEGLWindowContext_win::ANGLEGLWindowContext_win(HWND wnd, const DisplayParams& params)
         : INHERITED(params), fHWND(wnd) {
@@ -119,14 +159,14 @@ sk_sp<const GrGLInterface> ANGLEGLWindowContext_win::onInitializeContext() {
         return nullptr;
     }
 
-    sk_sp<const GrGLInterface> interface(GrGLMakeAssembledInterface(
+    sk_sp<const GrGLInterface> angle_interface(GrGLMakeAssembledInterface(
             nullptr,
             [](void* ctx, const char name[]) -> GrGLFuncPtr { return eglGetProcAddress(name); }));
-    if (interface) {
-        interface->fFunctions.fClearStencil(0);
-        interface->fFunctions.fClearColor(0, 0, 0, 0);
-        interface->fFunctions.fStencilMask(0xffffffff);
-        interface->fFunctions.fClear(GR_GL_STENCIL_BUFFER_BIT | GR_GL_COLOR_BUFFER_BIT);
+    if (angle_interface) {
+        angle_interface->fFunctions.fClearStencil(0);
+        angle_interface->fFunctions.fClearColor(0, 0, 0, 0);
+        angle_interface->fFunctions.fStencilMask(0xffffffff);
+        angle_interface->fFunctions.fClear(GR_GL_STENCIL_BUFFER_BIT | GR_GL_COLOR_BUFFER_BIT);
 
         // use DescribePixelFormat to get the stencil depth.
         int pixelFormat = GetPixelFormat(dc);
@@ -138,9 +178,9 @@ sk_sp<const GrGLInterface> ANGLEGLWindowContext_win::onInitializeContext() {
         GetClientRect(fHWND, &rect);
         fWidth = rect.right - rect.left;
         fHeight = rect.bottom - rect.top;
-        interface->fFunctions.fViewport(0, 0, fWidth, fHeight);
+        angle_interface->fFunctions.fViewport(0, 0, fWidth, fHeight);
     }
-    return interface;
+    return angle_interface;
 }
 
 void ANGLEGLWindowContext_win::onDestroyContext() {
@@ -160,6 +200,20 @@ void ANGLEGLWindowContext_win::onSwapBuffers() {
     if (!eglSwapBuffers(fDisplay, fEGLSurface)) {
         SkDebugf("Could not complete eglSwapBuffers.\n");
     }
+}
+
+void* ANGLEGLWindowContext_win::makeD3D11Texture2D(int w, int h) {
+    ID3D11Device* d3dDevice = (ID3D11Device*)QueryDeviceObjectFromANGLE(fDisplay);
+    if (!d3dDevice) {
+        return nullptr;
+    }
+    CD3D11_TEXTURE2D_DESC desc(DXGI_FORMAT_R8G8B8A8_UNORM, w, h, 1, 1,
+                               D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET);
+    desc.SampleDesc.Count = 1;
+    desc.SampleDesc.Quality = 0;
+    ID3D11Texture2D* newTexture;
+    d3dDevice->CreateTexture2D(&desc, nullptr, &newTexture);
+    return newTexture;
 }
 
 }  // anonymous namespace

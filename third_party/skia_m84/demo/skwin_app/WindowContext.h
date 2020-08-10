@@ -40,6 +40,8 @@ public:
     virtual void setDisplayParams(const DisplayParams& params) = 0;
 
     GrContext* getGrContext() const { return fContext.get(); }
+    virtual const GrGLInterface* getGrGLInterface() const { return nullptr; }
+    virtual void* makeD3D11Texture2D(int w, int h) { return nullptr; }
 
     int width() const { return fWidth; }
     int height() const { return fHeight; }
