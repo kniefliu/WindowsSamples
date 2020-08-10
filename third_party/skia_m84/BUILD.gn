@@ -855,6 +855,37 @@ if (skia_enable_gpu && skia_generate_workarounds) {
   }
 }
 
+if (skia_use_module_skottie) {
+  config("module_skottie_config") {
+    include_dirs = [ "modules/skresources/include" ]
+    include_dirs += [ "modules/sksg/include" ]
+    include_dirs += [ "modules/skshaper/include" ]
+    include_dirs += [ "modules/skottie/include" ]
+    defines = [ "SK_ENABLE_SKOTTIE" ]
+  }
+  
+  source_set("module_skottie") {
+    import("modules/skresources/skresources.gni")
+    import("modules/sksg/sksg.gni")
+    import("modules/skshaper/skshaper.gni")
+    import("modules/skottie/skottie.gni")
+    public_configs = [ ":skia_public" ]
+    public_configs += [ ":module_skottie_config" ]
+    public = skia_skresources_public
+    public += skia_shaper_public  
+    public += skia_skottie_public
+    defines = [ "SKSHAPER_IMPLEMENTATION=1" ]
+    sources = skia_skresources_sources
+    sources += skia_sksg_sources
+    sources += skia_shaper_primitive_sources
+    sources += skia_skottie_sources
+    configs += skia_library_configs
+    deps = [
+      #"../../experimental/ffmpeg:video_decoder",
+    ]
+  }
+}
+
 component("skia") {
   public_configs = [ ":skia_public" ]
   configs += skia_library_configs
@@ -906,6 +937,12 @@ component("skia") {
   if (is_component_build && !skia_enable_tools && is_win) {
     deps += [
       ":experimental_svg_model",
+    ]
+  }
+  
+  if (skia_use_module_skottie) {
+    deps += [
+      ":module_skottie",
     ]
   }
 

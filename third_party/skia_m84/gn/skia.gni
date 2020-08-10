@@ -68,6 +68,7 @@ declare_args() {
   skia_use_x11 = is_linux
   skia_use_xps = true
   skia_use_zlib = true
+  skia_use_module_skottie = false
 
   if (is_ios) {
     skia_ios_identity = ".*Google.*"

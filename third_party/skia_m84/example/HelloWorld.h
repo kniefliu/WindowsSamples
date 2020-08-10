@@ -10,6 +10,7 @@
 
 #include "tools/sk_app/Application.h"
 #include "tools/sk_app/Window.h"
+#include "modules/skottie/include/Skottie.h"
 
 class SkCanvas;
 class SkSVGDOM;
@@ -36,6 +37,12 @@ private:
 #ifdef SK_BUILD_FOR_WIN
     sk_sp<SkSVGDOM> fDom;
 #endif
+
+    // skottie
+    enum {
+        kSkottieSize = 200
+    };
+    sk_sp<skottie::Animation> fAnimation;
 };
 
 #endif

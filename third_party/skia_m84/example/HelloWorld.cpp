@@ -41,6 +41,10 @@ using namespace sk_app;
 </svg>)"
 };
 
+#include "example/SkottieData.inc"
+
+
+
 Application* Application::Create(int argc, char** argv, void* platformData) {
     return new HelloWorld(argc, argv, platformData);
 }
@@ -90,6 +94,11 @@ void HelloWorld::onBackendCreated() {
     std::unique_ptr<SkMemoryStream> svg_stream = SkMemoryStream::MakeCopy(svg_data, strlen(svg_data));
     fDom = SkSVGDOM::MakeFromStream(*svg_stream);
 #endif
+    
+    //fAnimation = skottie::Animation::Builder()
+    //                         .makeFromFile(R"(skia_path\resources\skottie\skottie_sample_search.json)");
+    fAnimation = skottie::Animation::Builder().make(skottie_sample_search,
+                                                    strlen(skottie_sample_search));
 }
 
 void HelloWorld::onPaint(SkSurface* surface) {
@@ -104,6 +113,11 @@ void HelloWorld::onPaint(SkSurface* surface) {
         fDom->render(canvas);
     }
 #endif
+
+    if (fAnimation) {
+        auto dest = SkRect::MakeXYWH(400, 100, kSkottieSize, kSkottieSize);
+        fAnimation->render(canvas, &dest);
+    }
 
     SkPaint paint;
     paint.setColor(SK_ColorRED);
@@ -148,10 +162,22 @@ void HelloWorld::onPaint(SkSurface* surface) {
 
     canvas->restore();
 }
+double nticks() {
+    typedef std::chrono::high_resolution_clock clock;
+    typedef std::chrono::duration<float, std::nano> duration;
 
+    static clock::time_point start = clock::now();
+    duration elapsed = clock::now() - start;
+    return elapsed.count();
+}
 void HelloWorld::onIdle() {
     // Just re-paint continously
     fWindow->inval();
+
+    if (fAnimation) {
+        const auto duration = fAnimation->duration();
+        fAnimation->seek(std::fmod(1e-9 * nticks(), duration) / duration);
+    }
 }
 
 bool HelloWorld::onChar(SkUnichar c, skui::ModifierKey modifiers) {
