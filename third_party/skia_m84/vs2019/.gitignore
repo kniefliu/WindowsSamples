@@ -11,3 +11,4 @@ ninja-Shared/
 *.pdf
 *.opendb
 *.db
+.vs
