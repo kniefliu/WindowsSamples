@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="example">
+      <UniqueIdentifier>{709AF31B-DEA0-0724-5772-0F87B976EE9D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../example/HelloWorld.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

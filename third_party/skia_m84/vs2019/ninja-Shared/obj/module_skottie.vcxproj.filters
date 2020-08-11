@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="modules\skresources\src">
+      <UniqueIdentifier>{2629B3D6-B105-F06B-178A-467DD5DD5E39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skresources">
+      <UniqueIdentifier>{B6E01A70-DB70-A8D3-E9D9-E99A33A9C7D5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules">
+      <UniqueIdentifier>{8CF3D52A-FC57-B6AD-46A8-0C0126C591BF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\sksg\src">
+      <UniqueIdentifier>{D9DA045D-10C4-2B0F-89CC-63D00D836D94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\sksg">
+      <UniqueIdentifier>{B5D4AB87-8586-509F-0324-6D98F59246E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skshaper\src">
+      <UniqueIdentifier>{CB338E6E-067D-C174-E55B-4C0021A986C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skshaper">
+      <UniqueIdentifier>{E29B2E8D-2CA2-F645-F3AD-DB17D5E2FC63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie\src">
+      <UniqueIdentifier>{2DD825BE-5BAE-2B59-A2C6-B5DD02C70071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie">
+      <UniqueIdentifier>{A5DD3DC3-4E99-4FAB-E685-077EFC88637A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie\src\animator">
+      <UniqueIdentifier>{52BE8AB5-07F8-B85C-5B95-C8C7AFF27D75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie\src\effects">
+      <UniqueIdentifier>{003CB9CB-1A04-661B-FF80-054A53DD7C4D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie\src\layers">
+      <UniqueIdentifier>{13FAB8FC-C523-ECD0-69AC-1EB519E16A72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie\src\layers\shapelayer">
+      <UniqueIdentifier>{3279FF6F-D5C5-53E7-7942-6281D5A5ED8B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\skottie\src\text">
+      <UniqueIdentifier>{C551F93D-8B29-0CC9-1700-D832F4C5EBDD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../modules/sksg/src/SkSGNodePriv.h">
+      <Filter>modules\sksg\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/sksg/src/SkSGTransformPriv.h">
+      <Filter>modules\sksg\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/Adapter.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/Camera.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/Composition.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/Layer.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/SkottieJson.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/SkottiePriv.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/SkottieValue.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/Transform.h">
+      <Filter>modules\skottie\src</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/animator/Animator.h">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/animator/KeyframeAnimator.h">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/animator/VectorKeyframeAnimator.h">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/effects/Effects.h">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/effects/MotionBlurEffect.h">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/layers/shapelayer/ShapeLayer.h">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/text/RangeSelector.h">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/text/SkottieShaper.h">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/text/TextAdapter.h">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/text/TextAnimator.h">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../modules/skottie/src/text/TextValue.h">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../modules/skresources/src/SkResources.cpp">
+      <Filter>modules\skresources\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGClipEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGColorFilter.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGDashEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGDraw.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGEffectNode.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGGeometryNode.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGGeometryTransform.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGGradient.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGGroup.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGImage.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGInvalidationController.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGMaskEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGMerge.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGNode.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGOpacityEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGPaint.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGPath.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGPlane.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGRect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGRenderEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGRenderNode.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGRoundEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGScene.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGText.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGTransform.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/sksg/src/SkSGTrimEffect.cpp">
+      <Filter>modules\sksg\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skshaper/src/SkShaper.cpp">
+      <Filter>modules\skshaper\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skshaper/src/SkShaper_coretext.cpp">
+      <Filter>modules\skshaper\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skshaper/src/SkShaper_primitive.cpp">
+      <Filter>modules\skshaper\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/Camera.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/Composition.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/Layer.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/Path.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/Skottie.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/SkottieJson.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/SkottieProperty.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/Transform.cpp">
+      <Filter>modules\skottie\src</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/Animator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/KeyframeAnimator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/ScalarKeyframeAnimator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/ShapeKeyframeAnimator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/TextKeyframeAnimator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/Vec2KeyframeAnimator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/animator/VectorKeyframeAnimator.cpp">
+      <Filter>modules\skottie\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/BrightnessContrastEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/CornerPinEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/DropShadowEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/Effects.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/FillEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/GaussianBlurEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/GlowStyles.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/GradientEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/HueSaturationEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/InvertEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/LevelsEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/LinearWipeEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/MotionBlurEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/MotionTileEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/RadialWipeEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/ShadowStyles.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/ShiftChannelsEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/TintEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/TransformEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/TritoneEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/effects/VenetianBlindsEffect.cpp">
+      <Filter>modules\skottie\src\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/FootageLayer.cpp">
+      <Filter>modules\skottie\src\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/NullLayer.cpp">
+      <Filter>modules\skottie\src\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/PrecompLayer.cpp">
+      <Filter>modules\skottie\src\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/SolidLayer.cpp">
+      <Filter>modules\skottie\src\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/TextLayer.cpp">
+      <Filter>modules\skottie\src\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/Ellipse.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/FillStroke.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/Gradient.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/MergePaths.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/Polystar.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/Rectangle.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/Repeater.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/RoundCorners.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/ShapeLayer.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/layers/shapelayer/TrimPaths.cpp">
+      <Filter>modules\skottie\src\layers\shapelayer</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/text/RangeSelector.cpp">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/text/SkottieShaper.cpp">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/text/TextAdapter.cpp">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/text/TextAnimator.cpp">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../modules/skottie/src/text/TextValue.cpp">
+      <Filter>modules\skottie\src\text</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+ninja-Static/
+ninja-Shared/
+*.tlog
+*.user
+*.log
+*.pdb
+*.suo
+*.res
+*.ilk
+*.exp
+*.pdf
+*.opendb
+*.db

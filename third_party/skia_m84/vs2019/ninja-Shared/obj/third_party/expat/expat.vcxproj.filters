@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..\..\third_party\externals\expat\expat\lib">
+      <UniqueIdentifier>{C2CF7BC1-9503-1AC8-F580-57D56A3CF603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party\externals\expat\expat">
+      <UniqueIdentifier>{FEE4AD5D-A99F-A480-7109-BFDB686AB7DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party\externals\expat">
+      <UniqueIdentifier>{CD810C69-5314-E16D-BE5F-6FBA4FABD76C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party\externals">
+      <UniqueIdentifier>{AA2D7338-93F3-927B-CA6F-5DA0C10A5E77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..\third_party">
+      <UniqueIdentifier>{F88318E6-F850-6A80-FDF6-B1A366449460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\..">
+      <UniqueIdentifier>{A8A4AA46-5437-4AB8-6540-F14ED994B38E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{78245A82-158D-7D20-54A6-7C428D0A7B36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../../../third_party/externals/expat/expat/lib/expat.h">
+      <Filter>..\..\third_party\externals\expat\expat\lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../../../third_party/externals/expat/expat/lib/xmlparse.c">
+      <Filter>..\..\third_party\externals\expat\expat\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/expat/expat/lib/xmlrole.c">
+      <Filter>..\..\third_party\externals\expat\expat\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../../../third_party/externals/expat/expat/lib/xmltok.c">
+      <Filter>..\..\third_party\externals\expat\expat\lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

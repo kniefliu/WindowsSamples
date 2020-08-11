@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="tools\sk_app">
+      <UniqueIdentifier>{255D30D0-C145-269E-AD5C-CDBAFE555B72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{0E9715BA-57B3-F23F-1EED-56699DC72D4B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\sk_app\win">
+      <UniqueIdentifier>{77A53F04-82F9-CD2F-46B3-EBB202D337AC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ClCompile Include="../../../tools/sk_app/CommandSet.cpp">
+      <Filter>tools\sk_app</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/GLWindowContext.cpp">
+      <Filter>tools\sk_app</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/Window.cpp">
+      <Filter>tools\sk_app</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/win/GLWindowContext_win.cpp">
+      <Filter>tools\sk_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/win/RasterWindowContext_win.cpp">
+      <Filter>tools\sk_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/win/Window_win.cpp">
+      <Filter>tools\sk_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/win/main_win.cpp">
+      <Filter>tools\sk_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../tools/sk_app/win/ANGLEWindowContext_win.cpp">
+      <Filter>tools\sk_app\win</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

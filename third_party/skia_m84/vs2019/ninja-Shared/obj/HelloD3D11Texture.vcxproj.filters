@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="demo">
+      <UniqueIdentifier>{7B753253-1404-896C-337B-1F1D4A8DFC5C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="demo\skwin_app">
+      <UniqueIdentifier>{8DC4CF90-9D6A-94C7-41F0-E3E1CC8E7A11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="demo\skwin_app\win">
+      <UniqueIdentifier>{E8CBF705-EA09-2101-74CF-AEBB5DD0A21D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../../../demo/HelloD3D11Texture.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/Application.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/CommandSet.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/DisplayParams.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/GLWindowContext.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/RasterWindowContext.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/Window.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/WindowContext.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/SkSurfaceHelper.h">
+      <Filter>demo\skwin_app</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/win/Window_win.h">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClInclude>
+    <ClInclude Include="../../../demo/skwin_app/win/WindowContextFactory_win.h">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../../../demo/HelloD3D11Texture.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/CommandSet.cpp">
+      <Filter>demo\skwin_app</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/GLWindowContext.cpp">
+      <Filter>demo\skwin_app</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/Window.cpp">
+      <Filter>demo\skwin_app</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/win/GLWindowContext_win.cpp">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/win/RasterWindowContext_win.cpp">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/win/Window_win.cpp">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/win/main_win.cpp">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/win/SkSurfaceHelper_win.cpp">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClCompile>
+    <ClCompile Include="../../../demo/skwin_app/win/ANGLEWindowContext_win.cpp">
+      <Filter>demo\skwin_app\win</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
