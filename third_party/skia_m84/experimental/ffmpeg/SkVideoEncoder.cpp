@@ -175,7 +175,11 @@ bool SkVideoEncoder::init(int fps) {
     fStream = avformat_new_stream(fFormatCtx, codec);
     SkASSERT(fStream);
     fStream->id = fFormatCtx->nb_streams-1;
+#if 0
     fStream->time_base = (AVRational){ 1, fps };
+#else
+    fStream->time_base = {1, fps};
+#endif
 
     fEncoderCtx = avcodec_alloc_context3(codec);
     SkASSERT(fEncoderCtx);

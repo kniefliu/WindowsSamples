@@ -1,4 +1,5 @@
 ninja-Static/
+.vs
 *.tlog
 *.user
 *.log

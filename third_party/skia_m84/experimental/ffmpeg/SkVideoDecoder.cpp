@@ -30,7 +30,7 @@ struct av_transfer_characteristics {
 };
 
 // Tables extracted from vf_colorspace.c
-
+#if 0
 const av_transfer_characteristics gTransfer[AVCOL_TRC_NB] = {
     [AVCOL_TRC_BT709]     = { 1.099,  0.018,  0.45, 4.5 },
     [AVCOL_TRC_GAMMA22]   = { 1.0,    0.0,    1.0 / 2.2, 0.0 },
@@ -42,6 +42,26 @@ const av_transfer_characteristics gTransfer[AVCOL_TRC_NB] = {
     [AVCOL_TRC_BT2020_10] = { 1.099,  0.018,  0.45, 4.5 },
     [AVCOL_TRC_BT2020_12] = { 1.0993, 0.0181, 0.45, 4.5 },
 };
+#else
+const av_transfer_characteristics gTransfer[AVCOL_TRC_NB] = {
+    { 0, 0, 0, 0 },
+    { 1.099,  0.018,  0.45, 4.5 },
+    {0, 0, 0, 0},
+    {0, 0, 0, 0},
+    { 1.0,    0.0,    1.0 / 2.2, 0.0 },
+    { 1.0,    0.0,    1.0 / 2.8, 0.0 },
+    { 1.099,  0.018,  0.45, 4.5 },
+    { 1.1115, 0.0228, 0.45, 4.0 },
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
+    { 1.099, 0.018, 0.45, 4.5 },
+        {0, 0, 0, 0},
+        {1.055, 0.0031308, 1.0 / 2.4, 12.92},
+    { 1.099,  0.018,  0.45, 4.5 },
+    { 1.0993, 0.0181, 0.45, 4.5 },
+};
+#endif
 
 static skcms_TransferFunction compute_transfer(AVColorTransferCharacteristic t) {
     const av_transfer_characteristics* av = &gTransfer[AVCOL_TRC_BT709];
@@ -70,15 +90,25 @@ enum Whitepoint {
     WP_NB,
 };
 
+#if 0
 const SkPoint gWP[WP_NB] = {
     [WP_D65] = { 0.3127f, 0.3290f },
     [WP_C]   = { 0.3100f, 0.3160f },
     [WP_DCI] = { 0.3140f, 0.3510f },
     [WP_E]   = { 1/3.0f, 1/3.0f },
 };
+#else
+const SkPoint gWP[WP_NB] = {
+    { 0.3127f, 0.3290f },
+    { 0.3100f, 0.3160f },
+    { 0.3140f, 0.3510f },
+    { 1/3.0f, 1/3.0f },
+};
+#endif
 
 #define ExpandWP(index) gWP[index].fX, gWP[index].fY
 
+#if 0
 const SkColorSpacePrimaries gPrimaries[AVCOL_PRI_NB] = {
     [AVCOL_PRI_BT709]     = { 0.640f, 0.330f, 0.300f, 0.600f, 0.150f, 0.060f, ExpandWP(WP_D65) },
     [AVCOL_PRI_BT470M]    = { 0.670f, 0.330f, 0.210f, 0.710f, 0.140f, 0.080f, ExpandWP(WP_C)   },
@@ -92,6 +122,33 @@ const SkColorSpacePrimaries gPrimaries[AVCOL_PRI_NB] = {
     [AVCOL_PRI_BT2020]    = { 0.708f, 0.292f, 0.170f, 0.797f, 0.131f, 0.046f, ExpandWP(WP_D65) },
     [AVCOL_PRI_JEDEC_P22] = { 0.630f, 0.340f, 0.295f, 0.605f, 0.155f, 0.077f, ExpandWP(WP_D65) },
 };
+#else
+const SkColorSpacePrimaries gPrimaries[AVCOL_PRI_NB] = {
+        {0, 0, 0, 0, 0, 0, 0},
+        {0.640f, 0.330f, 0.300f, 0.600f, 0.150f, 0.060f, ExpandWP(WP_D65)},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0.670f, 0.330f, 0.210f, 0.710f, 0.140f, 0.080f, ExpandWP(WP_C)},
+        {0.640f, 0.330f, 0.290f, 0.600f, 0.150f, 0.060f, ExpandWP(WP_D65)},
+        {0.630f, 0.340f, 0.310f, 0.595f, 0.155f, 0.070f, ExpandWP(WP_D65)},
+        {0.630f, 0.340f, 0.310f, 0.595f, 0.155f, 0.070f, ExpandWP(WP_D65)},
+        {0.681f, 0.319f, 0.243f, 0.692f, 0.145f, 0.049f, ExpandWP(WP_C)},
+        {0.708f, 0.292f, 0.170f, 0.797f, 0.131f, 0.046f, ExpandWP(WP_D65)},
+        {0.735f, 0.265f, 0.274f, 0.718f, 0.167f, 0.009f, ExpandWP(WP_E)},
+        {0.680f, 0.320f, 0.265f, 0.690f, 0.150f, 0.060f, ExpandWP(WP_DCI)},
+        {0.680f, 0.320f, 0.265f, 0.690f, 0.150f, 0.060f, ExpandWP(WP_D65)},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0},
+        {0.630f, 0.340f, 0.295f, 0.605f, 0.155f, 0.077f, ExpandWP(WP_D65)},
+};
+#endif
 
 sk_sp<SkColorSpace> make_colorspace(AVColorPrimaries primaries,
                                     AVColorTransferCharacteristic transfer) {
