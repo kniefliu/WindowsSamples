@@ -23,4 +23,12 @@
 	- Start vs2019, two methods: 
 		- The first method: `start out\ninja-Shared\skia.sln`
 		- The second method: `"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" out\ninja-Shared\skia.sln`
-	- Compile and run SampleApp project        
+	- Compile and run SampleApp project  
+
+- Use ninja compile: skia dll(x86)
+	- Set env path, run [SetToolPath.bat](SetToolPath.bat)
+	- Generate vs2019 project: `bin\gn.exe gen out\ninja-Shared-x86 --ide="vs2019" --sln="skia" --args="is_component_build=true is_official_build=false skia_use_angle=true angle_use_commit=false skia_use_egl=false skia_enable_spirv_validation=false skia_use_icu=false skia_use_module_skottie=true target_cpu=\"x86\" win_vc=\"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\" win_sdk_version=\"10.0.18362.0\""`
+	- Start vs2019, two methods: 
+		- The first method: `start out\ninja-Shared-x86\skia.sln`
+		- The second method: `"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" out\ninja-Shared-x86\skia.sln`
+	- Compile and run SampleApp project  	

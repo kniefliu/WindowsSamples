@@ -10,6 +10,7 @@
 .project
 .recipe_deps/
 .settings/
+*.aps
 TAGS
 bower_components
 imgui.ini
